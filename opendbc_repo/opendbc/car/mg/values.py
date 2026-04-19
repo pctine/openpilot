@@ -32,6 +32,13 @@ class CAR(Platforms):
     CarSpecs(mass=1590., wheelbase=2.58, steerRatio=15.8),
   )
 
+  MG_ZS = MgPlatformConfig(
+    [
+      MgCarDocs("MG ZS 2025"),
+    ],
+    CarSpecs(mass=1295., wheelbase=2.58, steerRatio=15.8),
+  )
+
 
 MG_VERSION_REQUEST = bytes([uds.SERVICE_TYPE.READ_DATA_BY_IDENTIFIER]) + \
   p16(0xf1a0)
@@ -47,12 +54,20 @@ FW_QUERY_CONFIG = FwQueryConfig(
   ],
 )
 
-GEAR_MAP = {
+GEAR_MAP_EV = {
   0: structs.CarState.GearShifter.unknown,
   15: structs.CarState.GearShifter.park,
   14: structs.CarState.GearShifter.reverse,
   13: structs.CarState.GearShifter.neutral,
   **{i: structs.CarState.GearShifter.drive for i in range(1, 9)},
+}
+
+GEAR_MAP = {
+  0: structs.CarState.GearShifter.unknown,
+  1: structs.CarState.GearShifter.park,
+  2: structs.CarState.GearShifter.reverse,
+  3: structs.CarState.GearShifter.neutral,
+  4: structs.CarState.GearShifter.drive,
 }
 
 
@@ -75,6 +90,7 @@ class CarControllerParams:
 class MgSafetyFlags(IntFlag):
   LONG_CONTROL = 1
   ALT_BRAKE = 2
+  NON_EV = 4
 
 
 DBC = CAR.create_dbc_map()

@@ -64,5 +64,21 @@ class TestMGAltBrakeSafety(TestMGSafety):
     return self.packer.make_can_msg_safety("GW_HSC2_HCU_FrP00", 0, values)
 
 
+class TestMGNonEvSafety(TestMGSafety):
+  def setUp(self):
+    self.packer = CANPackerSafety("mg")
+    self.safety = libsafety_py.libsafety
+    self.safety.set_safety_hooks(CarParams.SafetyModel.mg, 4)
+    self.safety.init_tests()
+
+  def _user_brake_msg(self, brake):
+    values = {"BrkPdlDrvrAppdPrsHSC2": 150 if brake else 0}
+    return self.packer.make_can_msg_safety("SCS_HSC2_FrP09", 0, values)
+
+  def _user_gas_msg(self, gas):
+    values = {"AccelActuPosHSC2": 50 if gas else 0}
+    return self.packer.make_can_msg_safety("Tester_HSC2_ECM_FrP00", 0, values)
+
+
 if __name__ == "__main__":
   unittest.main()

@@ -42,6 +42,10 @@ BO_ 175 GW_HSC2_HCU_FrP00: 8 GW
  SG_ EPTBrkPdlDscrtInptStsVHSC2 : 16|1@0+ (1,0) [0|1] ""  FVCM
  SG_ EPTStCmdOn_h1HSC2 : 17|1@0+ (1,0) [0|1] ""  FVCM
 
+BO_ 201 Tester_HSC2_ECM_FrP00: 8 Tester
+ SG_ AccelActuPosHSC2 : 39|8@0+ (0.392157,0) [0|100] "%"  FVCM
+ SG_ AccelActuPosVHSC2 : 31|1@0+ (1,0) [0|1] ""  FVCM
+
 BO_ 251 GW_HSC2_ECM_FrP27: 8 GW
  SG_ ACCStsHSC2 : 2|1@0+ (1,0) [0|1] "" XXX
  SG_ SpdAstMdECMHSC2 : 52|2@0+ (1,0) [0|3] ""  FVCM
