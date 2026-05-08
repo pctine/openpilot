@@ -66,8 +66,12 @@ class CarState(CarStateBase):
     ret.doorOpen = False  # TODO
 
     # Blinkers
-    ret.leftBlinker = cp.vl["GW_HSC2_BCM_FrP04"]["DircnIndLampSwStsHSC2"] == 1
-    ret.rightBlinker = cp.vl["GW_HSC2_BCM_FrP04"]["DircnIndLampSwStsHSC2"] == 2
+    if self.CP.carFingerprint == CAR.MG_ZS:
+      ret.leftBlinker = bool(cp.vl["GW_HSC2_BCM_FrP04"]["BlinkerLeft"])
+      ret.rightBlinker = bool(cp.vl["GW_HSC2_BCM_FrP04"]["BlinkerRight"])
+    else:
+      ret.leftBlinker = cp.vl["GW_HSC2_BCM_FrP04"]["DircnIndLampSwStsHSC2"] == 1
+      ret.rightBlinker = cp.vl["GW_HSC2_BCM_FrP04"]["DircnIndLampSwStsHSC2"] == 2
 
     # Seatbelt
     ret.seatbeltUnlatched = cp.vl["GW_HSC2_SDM_FrP00"]["DrvrSbltAtcHSC2"] != 1
