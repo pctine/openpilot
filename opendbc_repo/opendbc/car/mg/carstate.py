@@ -62,9 +62,10 @@ class CarState(CarStateBase):
     else:
       ret.gearShifter = GEAR_MAP_EV.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrEstdGearHSC2"]), GearShifter.unknown)
 
-    # Doors
-    ret.doorOpen = False  # TODO
-
+    # Doors 駕駛及副駕開門狀態 
+    ret.doorOpen = any([cp.vl["GW_HSC2_BCM_FrP04"]["DrvrDoorOpenSts_H1_Safety"],
+                        cp.vl["GW_HSC2_BCM_FrP04"]["FrtPsngDoorOpenSts_H1_Safety"]])
+    
     # Blinkers
     if self.CP.carFingerprint == CAR.MG_ZS:
       ret.leftBlinker = bool(cp.vl["GW_HSC2_BCM_FrP04"]["BlinkerLeft"])
@@ -76,9 +77,9 @@ class CarState(CarStateBase):
     # Seatbelt
     ret.seatbeltUnlatched = cp.vl["GW_HSC2_SDM_FrP00"]["DrvrSbltAtcHSC2"] != 1
 
-    # Blindspot
-    # ret.leftBlindspot = False
-    # ret.rightBlindspot = False
+    # Blindspot 盲點偵測
+    ret.leftBlindspot  = cp.vl["RDA_HSC1_P02"]["LBSDAndLCAWrnng_HS"] > 0
+    ret.rightBlindspot = cp.vl["RDA_HSC1_P02"]["RBSDAndLCAWrnng_HS"] > 0
 
     # AEB
     ret.stockAeb = False
