@@ -72,17 +72,24 @@ GEAR_MAP = {
 
 
 class CarControllerParams:
-  STEER_STEP = 2  # FVCM_HSC2_FrP03 message frequency 50Hz
-  STEER_MAX = 300
-  STEER_DELTA_UP = 10      # torque increase per refresh
-  STEER_DELTA_DOWN = 15    # torque decrease per refresh
-  STEER_DRIVER_ALLOWANCE = 100  # allowed driver torque before start limiting
-  STEER_DRIVER_MULTIPLIER = 2  # weight driver torque
-  STEER_DRIVER_FACTOR = 100
+  # --- 橫向控制（轉向力矩） ---
+  STEER_STEP = 2               # FVCM_HSC2_FrP03 訊息發送步長，Base 100Hz / 2 = 50Hz (每20ms發送一次)
+  STEER_MAX = 300              # 系統允許輸出的最大轉向力矩絕對值（CAN 允許上限）
+# STEER_DELTA_UP = 10          # 每次循環（20ms）允許力矩增加的最大幅度，用來防止轉向過猛
+# STEER_DELTA_DOWN = 15        # 每次循環（20ms）允許力矩減少的最大幅度，設定較高可讓系統快速釋放控制權
+  # for MG_ZS
+  STEER_DELTA_UP = 7           # 每次循環（20ms）允許力矩增加的最大幅度，用來防止轉向過猛
+  STEER_DELTA_DOWN = 7         # 每次循環（20ms）允許力矩減少的最大幅度，設定較高可讓系統快速釋放控制權
+  
+  # --- 駕駛介入與安全權重（防止拉扯/畫龍） ---
+  STEER_DRIVER_ALLOWANCE = 100 # 駕駛介入時，允許人手施加的最大力矩緩衝值，超過後系統開始限流
+  STEER_DRIVER_MULTIPLIER = 2  # 駕駛力矩的計算權重，數值愈大對人手介入越敏感
+  STEER_DRIVER_FACTOR = 100    # 駕駛介入的縮放係數，用於計算最終的安全限制邊界（Driver Filter）
 
-  ACCEL_MIN = -3.5  # m/s^2
-  ACCEL_MAX = 2.0  # m/s^2
-
+  # --- 縱向控制（加減速限制） ---
+  ACCEL_MIN = -3.5             # 最大減速度限制 (m/s^2)，約 -0.36g，確保煞車舒適度
+  ACCEL_MAX = 2.0              # 最大加速度限制 (m/s^2)，約 0.2g，避免起步跟車暴衝
+  
   def __init__(self, CP):
     pass
 
