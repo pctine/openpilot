@@ -34,7 +34,7 @@ def create_lkas_hud(packer, tja_ica_sys_state, is_left_line_visiable, is_right_l
   values = {
     "HandOffStrgWhlDetnStaHSC2"  : handoff_wrnng_lvl,  # hands off warnning, 1 is no warnning
     "HandOffStrgWhlDetnStaVHSC2" : 0,  # hands off warnning valid, 0 is valid
-    "LDWLKADspCmdHSC2"           : 0,  #  LKA display command
+    "LDWLKADspCmdHSC2"           : 1,  #  LKA display command
     "LDWLKAHapticWrnngDspCmdHSC2": 0,  # handoff_wrnng_lvl 
     'LDWLKALVsulznReqHSC2'       : is_left_line_visiable, # left lane line display
     'LDWLKARVsulznReqHSC2'       : is_right_line_visiable, # right lane line display
