@@ -33,7 +33,7 @@ class CarController(CarControllerBase):
       ## create lka_hud can message (CAN Bus2)
       ## io: (packer, tja_ica_sys_state, is_left_line_visiable, is_right_line_visiable, handoff_wrnng_lvl):
       hud_state = 2 if CC.enabled else 1
-      can_sends.append(create_lkas_hud(self.packer, hud_state, hud_state, hud_state, 2))
+      can_sends.append(create_lkas_hud(self.packer, hud_state, hud_state, hud_state, 0))
               
     new_actuators = actuators.as_builder()
     new_actuators.torque = self.apply_torque_last / CarControllerParams.STEER_MAX
