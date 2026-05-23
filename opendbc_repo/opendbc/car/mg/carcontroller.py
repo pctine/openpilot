@@ -30,7 +30,7 @@ class CarController(CarControllerBase):
       self.apply_torque_last = apply_torque
       can_sends.append(create_lka_steering(self.packer, (self.frame // CarControllerParams.STEER_STEP) % 16, apply_torque, CC.latActive))
       
-      ## create lka_hud can message
+      ## create lka_hud can message (CAN Bus2)
       ## io: (packer, tja_ica_sys_state, is_left_line_visiable, is_right_line_visiable, handoff_wrnng_lvl):
       hud_state = 2 if CC.enabled else 1
       can_sends.append(create_lkas_hud(self.packer, hud_state, hud_state, hud_state, 2))
