@@ -67,7 +67,7 @@ BO_ 359 FVCM_HSC2_FrP02: 8 FVCM
  SG_ FVCMCalPrgsReqHSC2 : 36|3@0+ (1,0) [0|7] ""  GW
  SG_ HandOffStrgWhlDetnStaHSC2 : 44|2@0+ (1,0) [0|3] ""  GW
  SG_ HandOffStrgWhlDetnStaVHSC2 : 45|1@0+ (1,0) [0|1] ""  GW
- SG_ LDWLKADspCmdHSC2x : 51|1@0+ (1,0) [0|1] ""  GW
+ SG_ LDWLKADspCmdHSC2x : 51|1@0+ (1,0) [0|1] ""  XXX
 SG_ LDWLKADspCmdHSC2 : 50|3@0+ (1,0) [0|7] ""  GW
  SG_ LDWLKAHapticWrnngDspCmdHSC2 : 63|2@0+ (1,0) [0|3] ""  GW
  SG_ LDWLKALVsulznReqHSC2 : 53|3@0+ (1,0) [0|7] ""  GW
