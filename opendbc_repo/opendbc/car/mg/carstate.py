@@ -60,7 +60,7 @@ class CarState(CarStateBase):
     target_speed = cp_cam.vl["FVCM_HSC2_FrP02"]["TrgtSpdReqCamrHSC2"] / 3.6    # 換算為 m/s
     if target_speed > 0:
       ret.cruiseState.speedLimit = target_speed
-      ret.cruiseState.speed = target_speed 
+      ret.cruiseState.speed = target_speed         # for DEBUG
     
     # Gear
     if self.CP.carFingerprint == CAR.MG_ZS:
