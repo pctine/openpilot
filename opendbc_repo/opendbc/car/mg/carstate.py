@@ -85,7 +85,7 @@ class CarState(CarStateBase):
     ret.stockAeb = False
 
     # TSR 道路速限
-    target_speed = cp.vl["FVCM_HSC2_FrP02"]["TrgtSpdReqCamrHSC2"] * 0.015625
+    target_speed = cp.vl["FVCM_HSC2_FrP02"]["TrgtSpdReqCamrHSC2"] * CV.KPH_TO_MS
     if target_speed > 0:
       ret.cruiseState.speed = target_speed
     
