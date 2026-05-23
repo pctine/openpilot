@@ -56,9 +56,6 @@ class CarState(CarStateBase):
 
     ret.accFaulted = cp_cam.vl["FVCM_HSC2_FrP02"]["TJAICASysFltStsHSC2"] != 0  # TODO: validate
 
-    # DEBUG
-    ret.cruiseState.speed = int(cp.vl["EPS_HSC2_FrP03"]["DrvrStrgDlvrdToqHSC2"] * 100)
-    
     # Gear
     if self.CP.carFingerprint == CAR.MG_ZS:
       ret.gearShifter = GEAR_MAP.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrShftLvrPos_h1HSC2"]), GearShifter.unknown)
