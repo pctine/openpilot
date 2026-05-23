@@ -74,7 +74,7 @@ GEAR_MAP = {
 class CarControllerParams:
   # --- 橫向控制（轉向力矩） ---
   STEER_STEP = 2               # FVCM_HSC2_FrP03 訊息發送步長，Base 100Hz / 2 = 50Hz (每20ms發送一次)
-  STEER_MAX = 230              # 系統允許輸出的最大轉向力矩絕對值（CAN 允許上限）
+  STEER_MAX = 250              # 系統允許輸出的最大轉向力矩絕對值（CAN 允許上限）
 # STEER_DELTA_UP = 10          # 每次循環（20ms）允許力矩增加的最大幅度，用來防止轉向過猛
 # STEER_DELTA_DOWN = 15        # 每次循環（20ms）允許力矩減少的最大幅度，設定較高可讓系統快速釋放控制權
   # for MG_ZS
