@@ -60,6 +60,7 @@ BO_ 355 GW_HSC2_SDM_FrP00: 8 GW
  SG_ DrvrSbltAtcVHSC2 : 13|1@0+ (1,0) [0|1] ""  FVCM
  SG_ SDMRCHSC2 : 1|2@0+ (1,0) [0|3] ""  FVCM
 
+# 儀表板車道線及圖示
 BO_ 359 FVCM_HSC2_FrP02: 8 FVCM
  SG_ AutoMainBeamLghtReqHSC2 : 15|2@0+ (1,0) [0|3] ""  GW
  SG_ DistSinceTrgtCamrHSC2 : 7|8@0+ (8.235,-100) [-100|1999.92] "m"  GW
