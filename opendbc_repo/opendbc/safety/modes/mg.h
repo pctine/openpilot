@@ -7,33 +7,33 @@ static bool mg_non_ev = false;
 
 static void mg_rx_hook(const CANPacket_t *msg) {
   if (msg->bus == 0U)  {
-    // Vehicle speed 車速(ID=571)
+    // Vehicle speed
     if (msg->addr == 0x23cU) {
       float speed = (((msg->data[2] & 0x7FU) << 8) | msg->data[3]) * 0.015625;
       vehicle_moving = speed > 0.0;
       UPDATE_VEHICLE_SPEED(speed * KPH_TO_MS);
     }
 
-    // Gas pressed 油門踏板位
+    // Gas pressed
     if (mg_non_ev) {
-      if (msg->addr == 0xc9U) {              # ID 201
+      if (msg->addr == 0xc9U) {
         gas_pressed = msg->data[4] != 0U;
       }
     } else {
-      if (msg->addr == 0xafU) {              # ID 175
+      if (msg->addr == 0xafU) {
         gas_pressed = msg->data[0] != 0U;
       }
     }
 
-    // Driver torque 駕駛施加的轉向扭力 (ID 492)
+    // Driver torque
     if (msg->addr == 0x1ecU) {
       int torque_driver_new = (((msg->data[4] & 0x7U) << 8) | msg->data[5]) - 1024U;
       update_sample(&torque_driver, torque_driver_new);
     }
 
-    // Brake pressed 煞車踏板壓力 
+    // Brake pressed
     if (mg_non_ev) {
-      if (msg->addr == 0x214U) {              # ID 532
+      if (msg->addr == 0x214U) {
         brake_pressed = msg->data[1] != 0U;
       }
     } else if (mg_zs_ev_brake) {
@@ -46,7 +46,7 @@ static void mg_rx_hook(const CANPacket_t *msg) {
       }
     }
 
-    // Cruise state ACC巡航狀態 (ID 578)
+    // Cruise state
     if (msg->addr == 0x242U) {
       int cruise_state = (msg->data[5] & 0x38U) >> 3;
       bool cruise_engaged = (cruise_state == 2) ||  // Active
@@ -70,7 +70,7 @@ static bool mg_tx_hook(const CANPacket_t *msg) {
   bool tx = true;
   bool violation = false;
 
-  // Steering control LKA 方向機控制 (ID 509)
+  // Steering control
   if (msg->addr == 0x1fdU) {
     int desired_torque = (((msg->data[0] & 0x7U) << 8) | msg->data[1]) - 1024U;
     bool steer_req = GET_BIT(msg, 35U);
