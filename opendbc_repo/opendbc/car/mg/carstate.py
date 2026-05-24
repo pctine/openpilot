@@ -61,7 +61,7 @@ class CarState(CarStateBase):
     if 0 < target_speed < 250:
       ret.cruiseState.speed = target_speed * CV.KPH_TO_MS  
     else:
-      ret.cruiseState.speed = 0
+      ret.cruiseState.speed = 0.0
 
     # Gear
     if self.CP.carFingerprint == CAR.MG_ZS:
