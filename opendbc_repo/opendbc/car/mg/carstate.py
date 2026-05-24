@@ -60,8 +60,8 @@ class CarState(CarStateBase):
     target_speed = cp_cam.vl["FVCM_HSC2_FrP02"]["TrgtSpdReqCamrHSC2"] 
     if 0 < target_speed < 250:
       ret.cruiseState.speed = target_speed * CV.KPH_TO_MS  
-    else:
-      ret.cruiseState.speed = 0.0
+    #else:
+    #  ret.cruiseState.speed = 0.0
 
     # Gear
     if self.CP.carFingerprint == CAR.MG_ZS:
