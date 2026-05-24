@@ -56,13 +56,12 @@ class CarState(CarStateBase):
 
     ret.accFaulted = cp_cam.vl["FVCM_HSC2_FrP02"]["TJAICASysFltStsHSC2"] != 0  # TODO: validate
 
-    # TSR 限速
+    # TSR 限速 ret.cruiseState.speedLimit
     target_speed = cp_cam.vl["FVCM_HSC2_FrP02"]["TrgtSpdReqCamrHSC2"] 
     if 0 < target_speed < 250:
       ret.cruiseState.speed = target_speed * CV.KPH_TO_MS  
-      #ret.cruiseState.speedLimit = target_speed
     else:
-      ret.cruiseState.speed = 30
+      ret.cruiseState.speed = 0
 
     # Gear
     if self.CP.carFingerprint == CAR.MG_ZS:
