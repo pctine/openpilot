@@ -12,6 +12,7 @@ class CarController(CarControllerBase):
     self.packer = CANPacker(dbc_names[Bus.pt])
 
     self.apply_torque_last = 0
+    self.frame = 0
 
   def update(self, CC, CS, now_nanos):
     actuators = CC.actuators
@@ -32,9 +33,10 @@ class CarController(CarControllerBase):
       
       ## create lka_hud can message (CAN Bus2)
       ## io: (packer, tja_ica_sys_state, is_left_line_visiable, is_right_line_visiable, handoff_wrnng_lvl):
-      hud_state = 1 if CC.enabled else 0
-      can_sends.append(create_lkas_hud(self.packer, hud_state, hud_state, hud_state, 0))
-              
+      if self.frame % 10 == 0:
+        hud_state = 1 if CC.enabled else 0
+        can_sends.append(create_lkas_hud(self.packer, hud_state, hud_state, hud_state, 0))
+    
     new_actuators = actuators.as_builder()
     new_actuators.torque = self.apply_torque_last / CarControllerParams.STEER_MAX
     new_actuators.torqueOutputCan = self.apply_torque_last
