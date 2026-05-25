@@ -27,32 +27,3 @@ def create_lka_steering(packer, counter, apply_torque, active):
 
   values["LKAReqToqPVHSC2"] = calc_checksum(values)
   return packer.make_can_msg("FVCM_HSC2_FrP03", 0, values)
-
-def create_lkas_hud(packer, tja_ica_sys_state, is_left_line_visiable, is_right_line_visiable, handoff_wrnng_lvl):
-  # FVCM_HSC2_FrP02  (359) Controls what lane-keeping icon is displayed.
-
-  values = {
-    "HandOffStrgWhlDetnStaHSC2"  : handoff_wrnng_lvl,  # hands off warnning, 1 is no warnning
-    "HandOffStrgWhlDetnStaVHSC2" : 0,  # hands off warnning valid, 0 is valid
-    "LDWLKADspCmdHSC2"           : 1,  #  LKA display command
-    "LDWLKAHapticWrnngDspCmdHSC2": 0,  # handoff_wrnng_lvl 
-    
-    'LDWLKALVsulznReqHSC2'       : is_left_line_visiable, # left lane line display
-    'LDWLKARVsulznReqHSC2'       : is_right_line_visiable, # right lane line display
-    
-    'TJAICADspCmdHSC2'           : 1,   #  TJA display command ,default open
-    'TJAICASysFltStsHSC2'        : 0,
-    'TJAICASysStsHSC2'           : tja_ica_sys_state, #  TJA system status
-    
-    # 以下補齊其他欄位，防止被 packer 填 0 導致儀表板退出
-    "AutoMainBeamLghtReqHSC2"     : 0,
-    "FVCMCalPrgsReqHSC2"          : 0,
-    "LDWSysFltStsHSC2"            : 0,
-    "SpdAstReqStsCamrHSC2"        : 0,
-    "DistSinceTrgtCamrHSC2"       : 0,
-    "TrgtSpdReqCamrHSC2"          : 0,
-    }
-
-  return packer.make_can_msg("FVCM_HSC2_FrP02", 0, values)  # 0x2a6, CAN bus2
-
-
