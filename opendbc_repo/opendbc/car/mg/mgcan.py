@@ -53,6 +53,6 @@ def create_lkas_hud(packer, tja_ica_sys_state, is_left_line_visiable, is_right_l
     "TrgtSpdReqCamrHSC2"          : 0,
     }
 
-  return packer.make_can_msg("FVCM_HSC2_FrP02", 2, values)  # 0x2a6, CAN bus2
+  return packer.make_can_msg("FVCM_HSC2_FrP02", 0, values)  # 0x2a6, CAN bus2
 
 
