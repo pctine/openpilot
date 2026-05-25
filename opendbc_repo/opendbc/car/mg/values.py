@@ -78,8 +78,8 @@ class CarControllerParams:
 # STEER_DELTA_UP = 10          # 每次循環（20ms）允許力矩增加的最大幅度，用來防止轉向過猛
 # STEER_DELTA_DOWN = 15        # 每次循環（20ms）允許力矩減少的最大幅度，設定較高可讓系統快速釋放控制權
   # for MG_ZS
-  STEER_DELTA_UP = 7           # 每次循環（20ms）允許力矩增加的最大幅度，用來防止轉向過猛
-  STEER_DELTA_DOWN = 7         # 每次循環（20ms）允許力矩減少的最大幅度，設定較高可讓系統快速釋放控制權
+  STEER_DELTA_UP = 10          # 每次循環（20ms）允許力矩增加的最大幅度，用來防止轉向過猛
+  STEER_DELTA_DOWN = 15        # 每次循環（20ms）允許力矩減少的最大幅度，設定較高可讓系統快速釋放控制權
   
   # --- 駕駛介入與安全權重（防止拉扯/畫龍） ---
   STEER_DRIVER_ALLOWANCE = 100 # 駕駛介入時，允許人手施加的最大力矩緩衝值，超過後系統開始限流
