@@ -36,12 +36,21 @@ def create_lkas_hud(packer, tja_ica_sys_state, is_left_line_visiable, is_right_l
     "HandOffStrgWhlDetnStaVHSC2" : 0,  # hands off warnning valid, 0 is valid
     "LDWLKADspCmdHSC2"           : 1,  #  LKA display command
     "LDWLKAHapticWrnngDspCmdHSC2": 0,  # handoff_wrnng_lvl 
+    
     'LDWLKALVsulznReqHSC2'       : is_left_line_visiable, # left lane line display
     'LDWLKARVsulznReqHSC2'       : is_right_line_visiable, # right lane line display
+    
     'TJAICADspCmdHSC2'           : 1,   #  TJA display command ,default open
     'TJAICASysFltStsHSC2'        : 0,
     'TJAICASysStsHSC2'           : tja_ica_sys_state, #  TJA system status
-
+    
+    # 以下補齊其他欄位，防止被 packer 填 0 導致儀表板退出
+    "AutoMainBeamLghtReqHSC2"     : 0,
+    "FVCMCalPrgsReqHSC2"          : 0,
+    "LDWSysFltStsHSC2"            : 0,
+    "SpdAstReqStsCamrHSC2"        : 0,
+    "DistSinceTrgtCamrHSC2"       : 0,
+    "TrgtSpdReqCamrHSC2"          : 0,
     }
 
   return packer.make_can_msg("FVCM_HSC2_FrP02", 2, values)  # 0x2a6, CAN bus2
