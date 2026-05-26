@@ -29,9 +29,9 @@ def create_lka_steering(packer, counter, apply_torque, active):
   return packer.make_can_msg("FVCM_HSC2_FrP03", 0, values)
 
 def create_lkas_hud(packer, lat_active: bool, stock_lkas_hud: dict, hud_control):
+  values = {**stock_lkas_hud, "HandOffStrgWhlDetnStaHSC2": 1}
   if lat_active:
-    values = {
-      **stock_lkas_hud,
+    values.update({
       "HandOffStrgWhlDetnStaHSC2"  : 1,  # hands off warnning, 1 is no warnning
       "HandOffStrgWhlDetnStaVHSC2" : 0,  # hands off warnning valid, 0 is valid
       "LDWLKADspCmdHSC2"           : 0,  #  LKA display command
@@ -41,6 +41,6 @@ def create_lkas_hud(packer, lat_active: bool, stock_lkas_hud: dict, hud_control)
       "TJAICADspCmdHSC2"           : 1,  #  TJA display command ,default open
       "TJAICASysFltStsHSC2"        : 0,
       "TJAICASysStsHSC2"           : 2,  #  TJA system status
-    }
+    })
     
-    return packer.make_can_msg("FVCM_HSC2_FrP02", 2, values)
+  return packer.make_can_msg("FVCM_HSC2_FrP02", 2, values)
