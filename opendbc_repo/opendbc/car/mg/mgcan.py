@@ -28,18 +28,11 @@ def create_lka_steering(packer, counter, apply_torque, active):
   values["LKAReqToqPVHSC2"] = calc_checksum(values)
   return packer.make_can_msg("FVCM_HSC2_FrP03", 0, values)
 
-def create_lkas_hud(packer, lat_active: bool, counter: int, stock_lkas_hud: dict, hud_control):
-  values = {**stock_lkas_hud, "COUNTER": counter, "HANDS_ON_WHEEL_REQ": 0}
-  
+def create_lkas_hud(packer, lat_active: bool, stock_lkas_hud: dict, hud_control):
   if lat_active:
-    values["LKS_MODE"] = 2 # green lane line icon
-    values["LKAS_STATE"] = 2 # green steering wheel icon
-    # LANE_STATE: 0=Grey, 1=Green, 2=Orange
-    values["LDWLKALVsulznReqHSC2"] = 2 if hud_control.leftLaneVisible else 0
-    values["LDWRKALVsulznReqHSC2"] = 2 if hud_control.rightLaneVisible else 0
-  
     values = {
-      "HandOffStrgWhlDetnStaHSC2"  : handoff_wrnng_lvl,  # hands off warnning, 1 is no warnning
+      **stock_lkas_hud,
+      "HandOffStrgWhlDetnStaHSC2"  : 1,  # hands off warnning, 1 is no warnning
       "HandOffStrgWhlDetnStaVHSC2" : 0,  # hands off warnning valid, 0 is valid
       "LDWLKADspCmdHSC2"           : 0,  #  LKA display command
       "LDWLKAHapticWrnngDspCmdHSC2": 0,  # handoff_wrnng_lvl 
@@ -47,7 +40,7 @@ def create_lkas_hud(packer, lat_active: bool, counter: int, stock_lkas_hud: dict
       "LDWLKARVsulznReqHSC2"       : 2,  # right lane line display
       "TJAICADspCmdHSC2"           : 1,  #  TJA display command ,default open
       "TJAICASysFltStsHSC2"        : 0,
-      "TJAICASysStsHSC2"           : tja_ica_sys_state, #  TJA system status
+      "TJAICASysStsHSC2"           : 2,  #  TJA system status
     }
     
-  return packer.make_can_msg("FVCM_HSC2_FrP02", 2, values)
+    return packer.make_can_msg("FVCM_HSC2_FrP02", 2, values)
