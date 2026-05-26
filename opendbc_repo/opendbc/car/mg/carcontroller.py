@@ -28,10 +28,9 @@ class CarController(CarControllerBase):
       else:
         apply_torque = 0
 
-      cntr = (self.frame // 2) % 16
       self.apply_torque_last = apply_torque
       can_sends.append(create_lka_steering(self.packer, (self.frame // CarControllerParams.STEER_STEP) % 16, apply_torque, CC.latActive))
-      can_sends.append(create_lkas_hud(self.packer, CC.latActive, cntr, CS.lkas_hud, hud_control))
+      can_sends.append(create_lkas_hud(self.packer, CC.latActive, CS.lkas_hud, hud_control))
 
     new_actuators = actuators.as_builder()
     new_actuators.torque = self.apply_torque_last / CarControllerParams.STEER_MAX
