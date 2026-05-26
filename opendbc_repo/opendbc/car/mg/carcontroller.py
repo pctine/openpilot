@@ -2,7 +2,7 @@ from opendbc.can.packer import CANPacker
 from opendbc.car import Bus
 from opendbc.car.lateral import apply_driver_steer_torque_limits
 from opendbc.car.interfaces import CarControllerBase
-from opendbc.car.mg.mgcan import create_lka_steering
+from opendbc.car.mg.mgcan import create_lka_steering, create_lkas_hud
 from opendbc.car.mg.values import CarControllerParams
 
 
@@ -15,6 +15,7 @@ class CarController(CarControllerBase):
 
   def update(self, CC, CS, now_nanos):
     actuators = CC.actuators
+    hud_control = CC.hudControl
 
     can_sends = []
 
@@ -27,8 +28,10 @@ class CarController(CarControllerBase):
       else:
         apply_torque = 0
 
+      cntr = (self.frame // 2) % 16
       self.apply_torque_last = apply_torque
       can_sends.append(create_lka_steering(self.packer, (self.frame // CarControllerParams.STEER_STEP) % 16, apply_torque, CC.latActive))
+      can_sends.append(create_lkas_hud(self.packer, CC.latActive, cntr, CS.lkas_hud, hud_control))
 
     new_actuators = actuators.as_builder()
     new_actuators.torque = self.apply_torque_last / CarControllerParams.STEER_MAX
