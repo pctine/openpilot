@@ -43,9 +43,9 @@ def create_lkas_hud(packer, lat_active: bool, counter: int, stock_lkas_hud: dict
       "HandOffStrgWhlDetnStaVHSC2" : 0,  # hands off warnning valid, 0 is valid
       "LDWLKADspCmdHSC2"           : 0,  #  LKA display command
       "LDWLKAHapticWrnngDspCmdHSC2": 0,  # handoff_wrnng_lvl 
-      "LDWLKALVsulznReqHSC2"       : is_left_line_visiable, # left lane line display
-      "LDWLKARVsulznReqHSC2"       : is_right_line_visiable, # right lane line display
-      "TJAICADspCmdHSC2"           : 1,   #  TJA display command ,default open
+      "LDWLKALVsulznReqHSC2"       : 2,  # left lane line display
+      "LDWLKARVsulznReqHSC2"       : 2,  # right lane line display
+      "TJAICADspCmdHSC2"           : 1,  #  TJA display command ,default open
       "TJAICASysFltStsHSC2"        : 0,
       "TJAICASysStsHSC2"           : tja_ica_sys_state, #  TJA system status
     }
