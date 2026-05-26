@@ -93,7 +93,7 @@ static bool mg_tx_hook(const CANPacket_t *msg) {
 static safety_config mg_init(uint16_t param) {
   static const CanMsg MG_TX_MSGS[] = {
     {0x1fd, 0, 8, .check_relay = true},    // STEERING_MODULE_ADAS (lateral steering command)
-    {0x167, 0, 8, .check_relay = true},    // LKAS_HUD_ADAS (dash HUD)
+    // {0x167, 0, 8, .check_relay = true},    // LKAS_HUD_ADAS (dash HUD)
   };
 
   static RxCheck mg_rx_checks[] = {
