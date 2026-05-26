@@ -91,7 +91,10 @@ static bool mg_tx_hook(const CANPacket_t *msg) {
   {.msg = {{0x242, 0, 8, .frequency = 50U, .ignore_checksum = true, .ignore_counter = true, .ignore_quality_flag = true}, { 0 }, { 0 }}},  /* RADAR_HSC2_FrP00 */
 
 static safety_config mg_init(uint16_t param) {
-  static const CanMsg MG_TX_MSGS[] = {{0x1fd, 0, 8, .check_relay = true}};
+  static const CanMsg MG_TX_MSGS[] = {
+    {0x1fd, 0, 8, .check_relay = true},    // STEERING_MODULE_ADAS (lateral steering command)
+    {0x167, 0, 8, .check_relay = true},    // LKAS_HUD_ADAS (dash HUD)
+  };
 
   static RxCheck mg_rx_checks[] = {
     MG_COMMON_RX_CHECKS
