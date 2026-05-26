@@ -30,13 +30,12 @@ def create_lka_steering(packer, counter, apply_torque, active):
 
 def create_lkas_hud(packer, lat_active: bool, stock_lkas_hud: dict, hud_control):
   values = {**stock_lkas_hud, "HandOffStrgWhlDetnStaHSC2": 1}
-  return packer.make_can_msg("FVCM_HSC2_FrP02", 2, values)
-  
+    
   if lat_active:
     values.update({
       "HandOffStrgWhlDetnStaHSC2"  : 1,  # hands off warnning, 1 is no warnning
       "HandOffStrgWhlDetnStaVHSC2" : 0,  # hands off warnning valid, 0 is valid
-      "LDWLKADspCmdHSC2"           : 1,  #  LKA display command
+      "LDWLKADspCmdHSC2"           : 0,  #  LKA display command
       "LDWLKAHapticWrnngDspCmdHSC2": 0,  # handoff_wrnng_lvl 
       "LDWLKALVsulznReqHSC2"       : 1,  # left lane line display
       "LDWLKARVsulznReqHSC2"       : 2,  # right lane line display
