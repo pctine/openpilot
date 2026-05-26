@@ -34,9 +34,9 @@ def create_lkas_hud(packer, lat_active: bool, stock_lkas_hud: dict, hud_control)
     values.update({
       "HandOffStrgWhlDetnStaHSC2"  : 1,  # hands off warnning, 1 is no warnning
       "HandOffStrgWhlDetnStaVHSC2" : 0,  # hands off warnning valid, 0 is valid
-      "LDWLKADspCmdHSC2"           : 0,  #  LKA display command
+      "LDWLKADspCmdHSC2"           : 1,  #  LKA display command
       "LDWLKAHapticWrnngDspCmdHSC2": 0,  # handoff_wrnng_lvl 
-      "LDWLKALVsulznReqHSC2"       : 2,  # left lane line display
+      "LDWLKALVsulznReqHSC2"       : 1,  # left lane line display
       "LDWLKARVsulznReqHSC2"       : 2,  # right lane line display
       "TJAICADspCmdHSC2"           : 1,  #  TJA display command ,default open
       "TJAICASysFltStsHSC2"        : 0,
