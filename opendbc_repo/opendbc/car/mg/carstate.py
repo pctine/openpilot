@@ -10,6 +10,7 @@ GearShifter = structs.CarState.GearShifter
 class CarState(CarStateBase):
   def __init__(self, CP):
     super().__init__(CP)
+    self.lkas_hud = {}
 
   def update(self, can_parsers) -> structs.CarState:
     cp = can_parsers[Bus.pt]
@@ -91,6 +92,9 @@ class CarState(CarStateBase):
     # AEB
     ret.stockAeb = False
 
+    # forward stock LKAS HUD
+    self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
+    
     return ret
 
   @staticmethod
