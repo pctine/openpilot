@@ -61,16 +61,15 @@ BO_ 355 GW_HSC2_SDM_FrP00: 8 GW
  SG_ SDMRCHSC2 : 1|2@0+ (1,0) [0|3] ""  FVCM
 
 BO_ 359 FVCM_HSC2_FrP02: 8 FVCM
+ SG_ LDWLKADspCmdHSC2 : 50|3@0+ (1,0) [0|7] ""  XXX
+ SG_ LDWLKALVsulznReqHSC2 : 7|4@0+ (1,0) [0|15] ""  GW
+ SG_ LDWLKARVsulznReqHSC2 : 3|4@0+ (1,0) [0|15] ""  GW
+ SG_ LDWLKAHapticWrnngDspCmdHSC2 : 63|2@0+ (1,0) [0|3] ""  GW
+ SG_ LDWSysFltStsHSC2 : 39|3@0+ (1,0) [0|7] ""  GW
  SG_ AutoMainBeamLghtReqHSC2 : 15|2@0+ (1,0) [0|3] ""  GW
- SG_ DistSinceTrgtCamrHSC2 : 7|8@0+ (8.235,-100) [-100|1999.92] "m"  GW
  SG_ FVCMCalPrgsReqHSC2 : 36|3@0+ (1,0) [0|7] ""  GW
  SG_ HandOffStrgWhlDetnStaHSC2 : 44|2@0+ (1,0) [0|3] ""  GW
  SG_ HandOffStrgWhlDetnStaVHSC2 : 45|1@0+ (1,0) [0|1] ""  GW
- SG_ LDWLKADspCmdHSC2 : 50|3@0+ (1,0) [0|7] ""  GW
- SG_ LDWLKAHapticWrnngDspCmdHSC2 : 63|2@0+ (1,0) [0|3] ""  GW
- SG_ LDWLKALVsulznReqHSC2 : 53|3@0+ (1,0) [0|7] ""  GW
- SG_ LDWLKARVsulznReqHSC2 : 42|3@0+ (1,0) [0|7] ""  GW
- SG_ LDWSysFltStsHSC2 : 39|3@0+ (1,0) [0|7] ""  GW
  SG_ SpdAstReqStsCamrHSC2 : 13|2@0+ (1,0) [0|3] ""  GW
  SG_ TJAICADspCmdHSC2 : 55|2@0+ (1,0) [0|3] ""  GW
  SG_ TJAICASysFltStsHSC2 : 61|3@0+ (1,0) [0|7] ""  GW,EPS
