@@ -74,7 +74,7 @@ BO_ 359 FVCM_HSC2_FrP02: 8 FVCM
  SG_ TJAICADspCmdHSC2 : 55|2@0+ (1,0) [0|3] ""  GW
  SG_ TJAICASysFltStsHSC2 : 61|3@0+ (1,0) [0|7] ""  GW,EPS
  SG_ TJAICASysStsHSC2 : 58|3@0+ (1,0) [0|7] ""  GW,EPS
- SG_ TrgtSpdReqCamrHSC2 : 22|15@0+ (0.015625,0) [0|511.984] ""  GW
+// SG_ TrgtSpdReqCamrHSC2 : 22|15@0+ (0.015625,0) [0|511.984] ""  GW
 
 BO_ 404 GW_HSC2_ECM_FrP04: 8 GW
  SG_ TrEstdGearHSC2 : 3|4@0+ (1,0) [0|15] ""  FVCM
