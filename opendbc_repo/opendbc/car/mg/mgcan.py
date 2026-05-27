@@ -37,11 +37,11 @@ def create_lkas_hud(packer, lat_active: bool, stock_lkas_hud: dict, hud_control)
       "HandOffStrgWhlDetnStaVHSC2" : 0,  # hands off warnning valid, 0 is valid
       "LDWLKADspCmdHSC2"           : 1,  #  LKA display command
       "LDWLKAHapticWrnngDspCmdHSC2": 0,  # handoff_wrnng_lvl 
-      "LDWLKALVsulznReqHSC2"       : 15, # left lane line display
-      "LDWLKARVsulznReqHSC2"       : 15, # right lane line display
       "TJAICADspCmdHSC2"           : 1,  #  TJA display command ,default open
       "TJAICASysFltStsHSC2"        : 0,
       "TJAICASysStsHSC2"           : 2,  #  TJA system status
+      "LDWLKALVsulznReqHSC2"       : 15, # left lane line display
+      "LDWLKARVsulznReqHSC2"       : 15, # right lane line display
     })
     
   return packer.make_can_msg("FVCM_HSC2_FrP02", 2, values)
