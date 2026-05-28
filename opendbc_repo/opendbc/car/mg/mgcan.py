@@ -37,5 +37,6 @@ def create_lkas_hud(packer, lat_active: bool, stock_lkas_hud: dict, hud_control)
     # values["HandOffStrgWhlDetnStaHSC2"] = 1
     # values["LDWLKALVsulznReqHSC2"] = 2
     # values["LDWLKARVsulznReqHSC2"] = 2
+    pass
    
   return packer.make_can_msg("FVCM_HSC2_FrP02", 2, values)
