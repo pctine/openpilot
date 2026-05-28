@@ -49,8 +49,10 @@ class CarState(CarStateBase):
     ret.steeringTorqueEps = cp.vl["EPS_HSC2_FrP03"]["ChLKARespToqHSC2"]
     ret.steeringPressed = self.update_steering_pressed(abs(ret.steeringTorque) > 1.0, 5)
 
+    # Lane Departure Warning System Fault Status（車道偏離警示系統故障狀態)
     ret.steerFaultTemporary = cp_cam.vl["FVCM_HSC2_FrP02"]["LDWSysFltStsHSC2"] != 0  # TODO: validate
-
+    print(f"[LDWSysFltStsHSC2] {cp_cam.vl['FVCM_HSC2_FrP02']['LDWSysFltStsHSC2']}")
+    
     # Cruise state
     ret.cruiseState.enabled = cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"] in (2, 3)  # Active, Override
     ret.cruiseState.available = True
