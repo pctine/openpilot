@@ -52,13 +52,9 @@ class CarState(CarStateBase):
     ret.steeringPressed = self.update_steering_pressed(abs(ret.steeringTorque) > 1.0, 5)
 
     # 紀錄最大扭力
-    if abs(ret.steeringTorque) > self.max_steeringTorque:
-      self.max_steeringTorque = abs(ret.steeringTorque)
-      print(f"TORQUE: {self.max_steeringTorque:.2f}, EPS: {self.max_steeringTorqueEps:.2f}")    
-    
-    if abs(ret.steeringTorqueEps) > self.max_steeringTorqueEps:
-      self.max_steeringTorqueEps = abs(ret.steeringTorqueEps)
-      print(f"TORQUE: {self.max_steeringTorque:.2f}, EPS: {self.max_steeringTorqueEps:.2f}") 
+    self.max_steeringTorque = max(self.max_steeringTorque, abs(ret.steeringTorque))
+    self.max_steeringTorqueEps = max(self.max_steeringTorqueEps, abs(ret.steeringTorqueEps))
+    print(f"TORQUE: {self.max_steeringTorque:.2f}, EPS: {self.max_steeringTorqueEps:.2f}") 
    
     # Lane Departure Warning System Fault Status（車道偏離警示系統故障狀態)
     ret.steerFaultTemporary = cp_cam.vl["FVCM_HSC2_FrP02"]["LDWSysFltStsHSC2"] != 0  # TODO: validate
