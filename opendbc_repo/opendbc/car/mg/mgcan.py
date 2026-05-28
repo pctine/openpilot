@@ -30,7 +30,9 @@ def create_lka_steering(packer, counter, apply_torque, active):
 
 def create_lkas_hud(packer, lat_active: bool, stock_lkas_hud: dict, hud_control):
   values = dict(stock_lkas_hud)
-    
+
+  print(f"[HUD] LEFT: {values.get('LDWLKALVsulznReqHSC2')}, RIGHT: {values.get('LDWLKARVsulznReqHSC2')}")
+  
   if lat_active:
     # values["HandOffStrgWhlDetnStaHSC2"] = 1
     # values["LDWLKALVsulznReqHSC2"] = 2
