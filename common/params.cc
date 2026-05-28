@@ -240,6 +240,3 @@ void Params::asyncWriteThread() {
     put(p.first, p.second);
   }
 }
-
-// 新增 toggle 參數
-{"ForceMGZS", PERSISTENT},
