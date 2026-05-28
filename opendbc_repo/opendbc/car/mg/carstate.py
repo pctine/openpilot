@@ -97,7 +97,7 @@ class CarState(CarStateBase):
     ret.stockAeb = False
 
     # forward stock LKAS HUD
-    self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
+#   self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
     
     return ret
 
