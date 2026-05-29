@@ -58,7 +58,9 @@ class CarState(CarStateBase):
    
     # Lane Departure Warning System Fault Status（車道偏離警示系統故障狀態)
     ret.steerFaultTemporary = cp_cam.vl["FVCM_HSC2_FrP02"]["LDWSysFltStsHSC2"] != 0  # TODO: validate
-    
+    if ret.steerFaultTemporary:
+      print("(Steer Fault Temporary)！")
+     
     # Cruise state
     ret.cruiseState.enabled = cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"] in (2, 3)  # Active, Override
     ret.cruiseState.available = True
