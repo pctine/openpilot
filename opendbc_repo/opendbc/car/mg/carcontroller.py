@@ -10,8 +10,8 @@ class CarController(CarControllerBase):
   def __init__(self, dbc_names, CP):
     super().__init__(dbc_names, CP)
     self.packer = CANPacker(dbc_names[Bus.pt])
-
     self.apply_torque_last = 0
+    self.brake_counter = 0
 
   def update(self, CC, CS, now_nanos):
     actuators = CC.actuators
