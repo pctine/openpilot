@@ -104,17 +104,15 @@ class CarState(CarStateBase):
     #cp.vl["RADAR_HSC2_FrP02"]["AEBPedtrnDspCmdHSC2"] == 2
     #)
     # 限速,AEB,車道線
+    # stop & go 起步請求
     print(
       f'SPEED:{limit_speed}, '
       f'AEB1:{cp.vl["RADAR_HSC2_FrP02"]["AEBDspCmd_RadarHSC2"]}, '
       f'AEB2:{cp.vl["RADAR_HSC2_FrP02"]["AEBPedtrnDspCmdHSC2"]}, '
       f'LEFT:{cp_cam.vl["FVCM_HSC2_FrP02"]["LDWLKALVsulznReqHSC2"]}, '
-      f'RIGHT:{cp_cam.vl["FVCM_HSC2_FrP02"]["LDWLKARVsulznReqHSC2"]}'
+      f'RIGHT:{cp_cam.vl["FVCM_HSC2_FrP02"]["LDWLKARVsulznReqHSC2"]}, '
+      f'GO:{cp.vl["RADAR_HSC2_FrP00"]["ACCGoReqHSC2"]}'
     ) 
-        
-    # stop & go 起步請求
-    if cp.vl["RADAR_HSC2_FrP00"]["ACCGoReqHSC2"] !=0:
-      print("[ACCGoReqHSC2] STOP & GO!")
         
     # forward stock LKAS HUD
 #   self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
