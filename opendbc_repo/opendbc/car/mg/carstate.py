@@ -104,6 +104,10 @@ class CarState(CarStateBase):
     # AEB
     ret.stockAeb = False
 
+    # stop & go 起步請求
+    if cp.vl["RADAR_HSC2_FrP00"]["ACCGoReqHSC2"] !=0:
+      print("[ACCGoReqHSC2] STOP & GO!")
+        
     # forward stock LKAS HUD
 #   self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
     
