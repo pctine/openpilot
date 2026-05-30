@@ -104,6 +104,7 @@ class CarState(CarStateBase):
     # stop & go 起步請求
     print(
       f'SPEED:{limit_speed}, '
+      f'AEB:{cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"]}, '
       f'FCW1:{cp.vl["RADAR_HSC2_FrP02"]["FCWSysFltSts_RadarHSC2"]}, '
       f'FCW2:{cp.vl["RADAR_HSC2_FrP02"]["FCWSnstvtLvl_RadarHSC2"]}, '  
       f'FCW3:{cp.vl["RADAR_HSC2_FrP02"]["FCWrnngSts_RadarHSC2"]}, '
