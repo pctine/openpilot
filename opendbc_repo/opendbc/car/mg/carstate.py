@@ -102,8 +102,14 @@ class CarState(CarStateBase):
     ret.rightBlindspot = cp.vl["RDA_HSC1_P02"]["RBSDAndLCAWrnng_HS"] > 0
 
     # AEB
-    ret.stockAeb = False
-
+    # ret.stockAeb = False
+    ret.stockAeb = (
+      cp.vl["RADAR_HSC2_FrP02"]["AEBDspCmd_RadarHSC2"] == 2 or
+      cp.vl["RADAR_HSC2_FrP02"]["AEBPedtrnDspCmdHSC2"] == 2
+    )
+    if ret.stockAeb:
+      print("AEB Active!")
+    
     # stop & go 起步請求
     if cp.vl["RADAR_HSC2_FrP00"]["ACCGoReqHSC2"] !=0:
       print("[ACCGoReqHSC2] STOP & GO!")
