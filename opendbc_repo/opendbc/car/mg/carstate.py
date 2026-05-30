@@ -97,6 +97,12 @@ class CarState(CarStateBase):
     # TSR 限速 ret.cruiseState.speedLimit
     limit_speed = cp_cam.vl["FVCM_HSC2_FrP02"]["TrgtSpdReqCamrHSC2"] 
 
+    # 車道線
+    line1 = cp_cam.vl["FVCM_HSC2_FrP02"]["LDWLKALVsulznReqHSC2"] 
+    line2 = cp_cam.vl["FVCM_HSC2_FrP02"]["LDWLKARVsulznReqHSC2"] 
+    
+    print(f"[HUD] LEFT: {values.get('LDWLKALVsulznReqHSC2')}, RIGHT: {values.get('LDWLKARVsulznReqHSC2')}")
+    
     # AEB
     ret.stockAeb = False
     #stockAeb = (
