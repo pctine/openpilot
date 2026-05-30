@@ -44,7 +44,8 @@ class CarController(CarControllerBase):
         # Mazda Stop and Go requires a RES button (or gas) press if the car stops more than 3 seconds
         # Send Resume button when planner wants car to move
         #can_sends.append(mazdacan.create_button_cmd(self.packer, self.CP, CS.crz_btns_counter, Buttons.RESUME))      
-
+        print(f"[RESUME]:{CC.cruiseControl.resume}")
+      
       self.apply_torque_last = apply_torque
       can_sends.append(create_lka_steering(self.packer, (self.frame // CarControllerParams.STEER_STEP) % 16, apply_torque, CC.latActive))
       # can_sends.append(create_lkas_hud(self.packer, CC.latActive, CS.lkas_hud, hud_control))
