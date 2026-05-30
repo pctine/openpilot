@@ -103,7 +103,7 @@ class CarState(CarStateBase):
 
     # AEB
     ret.stockAeb = False
-    stockAeb = (
+    xstockAeb = (
       cp.vl["RADAR_HSC2_FrP02"]["AEBDspCmd_RadarHSC2"] == 2 or
       cp.vl["RADAR_HSC2_FrP02"]["AEBPedtrnDspCmdHSC2"] == 2
     )
