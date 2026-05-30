@@ -106,7 +106,7 @@ class CarState(CarStateBase):
       f'SPEED:{limit_speed}, '
       f'AEB:{cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"]}, '
       f'GO:{cp.vl["RADAR_HSC2_FrP02"]["ACCGoNotfr_RadarHSC2"]}, '
-      f'resume:{CC.cruiseControl.resume}
+      f'resume:{CC.cruiseControl.resume}'
     ) 
         
     # forward stock LKAS HUD
