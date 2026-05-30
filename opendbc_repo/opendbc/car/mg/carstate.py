@@ -111,7 +111,7 @@ class CarState(CarStateBase):
       f'FCW4:{cp.vl["RADAR_HSC2_FrP02"]["FCWDspCmd_RadarHSC2"]}, '
       f'LEFT:{cp_cam.vl["FVCM_HSC2_FrP02"]["LDWLKALVsulznReqHSC2"]}, '
       f'RIGHT:{cp_cam.vl["FVCM_HSC2_FrP02"]["LDWLKARVsulznReqHSC2"]}, '
-      f'GO:{cp.vl["RADAR_HSC2_FrP00"]["ACCGoReqHSC2"]}'
+      f'GO:{cp.vl["RADAR_HSC2_FrP02"]["ACCGoNotfr_RadarHSC2"]}'
     ) 
         
     # forward stock LKAS HUD
