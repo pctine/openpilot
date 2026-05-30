@@ -96,12 +96,6 @@ class CarState(CarStateBase):
 
     # TSR 限速 ret.cruiseState.speedLimit
     limit_speed = cp_cam.vl["FVCM_HSC2_FrP02"]["TrgtSpdReqCamrHSC2"] 
-
-    # 車道線
-    line1 = cp_cam.vl["FVCM_HSC2_FrP02"]["LDWLKALVsulznReqHSC2"] 
-    line2 = cp_cam.vl["FVCM_HSC2_FrP02"]["LDWLKARVsulznReqHSC2"] 
-    
-    print(f"[HUD] LEFT: {values.get('LDWLKALVsulznReqHSC2')}, RIGHT: {values.get('LDWLKARVsulznReqHSC2')}")
     
     # AEB
     ret.stockAeb = False
@@ -109,10 +103,13 @@ class CarState(CarStateBase):
     #cp.vl["RADAR_HSC2_FrP02"]["AEBDspCmd_RadarHSC2"] == 2 or
     #cp.vl["RADAR_HSC2_FrP02"]["AEBPedtrnDspCmdHSC2"] == 2
     #)
+    # 限速,AEB,車道線
     print(
       f'SPEED:{limit_speed}, '
       f'AEB1:{cp.vl["RADAR_HSC2_FrP02"]["AEBDspCmd_RadarHSC2"]}, '
-      f'AEB2:{cp.vl["RADAR_HSC2_FrP02"]["AEBPedtrnDspCmdHSC2"]}'
+      f'AEB2:{cp.vl["RADAR_HSC2_FrP02"]["AEBPedtrnDspCmdHSC2"]}, '
+      f'LEFT:{cp_cam.vl["FVCM_HSC2_FrP02"]["LDWLKALVsulznReqHSC2"]}, '
+      f'RIGHT:{cp_cam.vl["FVCM_HSC2_FrP02"]["LDWLKARVsulznReqHSC2"]}'
     ) 
         
     # stop & go 起步請求
