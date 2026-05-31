@@ -63,7 +63,8 @@ class CarState(CarStateBase):
 
     # 車輛靜止狀態
     print(
-      f'[593]:{cp.vl["SCS_HSC2_FrP24"]["VehSdslStsHSC2"]}, '
+      f'[ACC]:{ret.cruiseState.enabled}, '
+      f'[cruise]:{ret.cruiseState.enabled}, '
       f'[578]:{cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"]}'
     )
     
