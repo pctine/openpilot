@@ -23,16 +23,21 @@ class CarController(CarControllerBase):
     can_sends = []
 
     # steering command
-    apply_torque = 0
     if self.frame % CarControllerParams.STEER_STEP == 0:
       if CC.latActive:
         # calculate steer and also set limits due to driver torque
         new_torque = int(round(actuators.torque * CarControllerParams.STEER_MAX))
         apply_torque = apply_driver_steer_torque_limits(new_torque, self.apply_torque_last, CS.out.steeringTorque, CarControllerParams)
-   
+      eles:
+        apply_torque = 0
+            
       self.apply_torque_last = apply_torque
       can_sends.append(create_lka_steering(self.packer, (self.frame // CarControllerParams.STEER_STEP) % 16, apply_torque, CC.latActive))
       # can_sends.append(create_lkas_hud(self.packer, CC.latActive, CS.lkas_hud, hud_control))
+
+    # 修正優化：如果 LKA 根本沒激活，確保回傳給 safety 核心的扭力絕對是 0，避免殘留
+    if not CC.latActive:
+        self.apply_torque_last = 0
     
     # Longitudinal control 縱向控制
     if self.CP.openpilotLongitudinalControl:
