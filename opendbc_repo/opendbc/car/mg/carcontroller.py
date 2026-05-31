@@ -27,7 +27,28 @@ class CarController(CarControllerBase):
         apply_torque = apply_driver_steer_torque_limits(new_torque, self.apply_torque_last, CS.out.steeringTorque, CarControllerParams)
       else:
         apply_torque = 0
+    
+    # Longitudinal control
+    if self.CP.openpilotLongitudinalControl:
+      accel = float(np.clip(actuators.accel, CarControllerParams.ACCEL_MIN, CarControllerParams.ACCEL_MAX))
+      can_sends.append(create_longitudinal(self.packer, self.frame, accel, CC.enabled))
+    else:
+      interface_status = None
+      if CC.cruiseControl.cancel:
+        # if there is a noEntry, we need to send a status of "available" before the ACM will accept "unavailable"
+        # send "available" right away as the VDM itself takes a few frames to acknowledge
+        interface_status = 1 if self.cancel_frames < 5 else 0
+        self.cancel_frames += 1
+      else:
+        self.cancel_frames = 0
 
+      for msg in CS.vdm_adas_status:
+        can_sends.append(create_adas_status(self.packer, msg, interface_status))
+      
+      
+
+
+      
       if CC.cruiseControl.cancel:
         # If brake is pressed, let us wait >70ms before trying to disable crz to avoid
         # a race condition with the stock system, where the second cancel from openpilot
