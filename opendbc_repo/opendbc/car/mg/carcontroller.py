@@ -56,7 +56,7 @@ class CarController(CarControllerBase):
         self.cancel_frames = 0
 
     self.brake_counter = 0
-    if CC.cruiseControl.resume and self.frame % 5 == 0:
+    if CC.cruiseControl.resume:
       # MG Stop and Go requires a RES button (or gas) press if the car stops more than 3 seconds
       # Send Resume button when planner wants car to move
       print(f"STOP&GO RESUME")
