@@ -106,7 +106,7 @@ class CarState(CarStateBase):
     self.buttonStates["cancel"]       = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsCanclSwA_h2HSC2"])
     self.buttonStates["setCruise"]    = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSetSwA_h2HSC2"])
     self.buttonStates["resumeCruise"] = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsRsmSwA_h2HSC2"])
-    self.buttonStates["OnCruise"]     = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsOnSwA_h2HSC2"])
+    self.buttonStates["onCruise"]     = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsOnSwA_h2HSC2"])
     
     # forward stock LKAS HUD
 #   self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
