@@ -58,7 +58,8 @@ class CarController(CarControllerBase):
         if CC.cruiseControl.resume and self.frame % 5 == 0:
           # MG Stop and Go requires a RES button (or gas) press if the car stops more than 3 seconds
           # Send Resume button when planner wants car to move
-          can_sends.append(mgcan.create_button_cmd(self.packer, CS.crz_btns_counter, Buttons.RESUME))
+          print(f"STOP&GO RESUME")
+          #can_sends.append(mgcan.create_button_cmd(self.packer, CS.crz_btns_counter, Buttons.RESUME))
           
     new_actuators = actuators.as_builder()
     new_actuators.torque = self.apply_torque_last / CarControllerParams.STEER_MAX
