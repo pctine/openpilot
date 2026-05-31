@@ -43,7 +43,8 @@ class CarController(CarControllerBase):
     if self.CP.openpilotLongitudinalControl:
       accel = float(np.clip(actuators.accel, CarControllerParams.ACCEL_MIN, CarControllerParams.ACCEL_MAX))
       #can_sends.append(mgcan.create_longitudinal(self.packer, self.frame, accel, CC.enabled))
-      print(f"[ACCEL]:{actuators.accel:.2f}")
+      print(
+        f"[ACCEL]:{actuators.accel:.2f}{CC.cruiseControl.resume}")
     else:
       interface_status = None
       if CC.cruiseControl.cancel:
@@ -59,7 +60,7 @@ class CarController(CarControllerBase):
     if CC.cruiseControl.resume:
       # MG Stop and Go requires a RES button (or gas) press if the car stops more than 3 seconds
       # Send Resume button when planner wants car to move
-      print(f"STOP&GO RESUME")
+      pass
       #can_sends.append(mgcan.create_button_cmd(self.packer, CS.crz_btns_counter, Buttons.RESUME))
       
     new_actuators = actuators.as_builder()
