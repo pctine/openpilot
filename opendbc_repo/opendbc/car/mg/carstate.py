@@ -13,7 +13,7 @@ class CarState(CarStateBase):
   def __init__(self, CP):
     super().__init__(CP)
     self.lkas_hud = {}
-    self.buttonStates = BUTTON_STATES.copy()
+    self.button_states = BUTTON_STATES.copy()
     
   def update(self, can_parsers) -> structs.CarState:
     cp = can_parsers[Bus.pt]
@@ -84,7 +84,7 @@ class CarState(CarStateBase):
     ret.seatbeltUnlatched = cp.vl["GW_HSC2_SDM_FrP00"]["DrvrSbltAtcHSC2"] != 1
 
     # Blindspot 盲點偵測
-    ret.leftBlindspot  = cp.vl["RDA_HSC1_P02"]["LBSDAndLCAWrnng_HS"] > 0
+    ret.leftBlindspot = cp.vl["RDA_HSC1_P02"]["LBSDAndLCAWrnng_HS"] > 0
     ret.rightBlindspot = cp.vl["RDA_HSC1_P02"]["RBSDAndLCAWrnng_HS"] > 0
 
     # AEB
@@ -101,12 +101,12 @@ class CarState(CarStateBase):
     #) 
 
     # Update control button states for turn signals and ACC controls.
-    self.buttonStates["accelCruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdIncSwA_h2HSC2"])
-    self.buttonStates["decelCruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdDecSwA_h2HSC2"])
-    self.buttonStates["cancel"]       = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsCanclSwA_h2HSC2"])
-    self.buttonStates["setCruise"]    = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSetSwA_h2HSC2"])
-    self.buttonStates["resumeCruise"] = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsRsmSwA_h2HSC2"])
-    self.buttonStates["onCruise"]     = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsOnSwA_h2HSC2"])
+    self.button_states["accel_cruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdIncSwA_h2HSC2"])
+    self.button_states["decel_cruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdDecSwA_h2HSC2"])
+    self.button_states["cancel"]        = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsCanclSwA_h2HSC2"])
+    self.button_states["set_cruise"]    = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSetSwA_h2HSC2"])
+    self.button_states["resume_cruise"] = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsRsmSwA_h2HSC2"])
+    self.button_states["on_cruise"]     = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsOnSwA_h2HSC2"])
     
     # forward stock LKAS HUD
 #   self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
