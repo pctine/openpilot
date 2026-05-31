@@ -3,7 +3,7 @@ import copy
 from opendbc.can.parser import CANParser
 from opendbc.car import Bus, structs
 from opendbc.car.interfaces import CarStateBase
-from opendbc.car.mg.values import CAR, DBC, GEAR_MAP, GEAR_MAP_EV
+from opendbc.car.mg.values import CAR, DBC, GEAR_MAP, GEAR_MAP_EV, BUTTON_STATES
 from opendbc.car.common.conversions import Conversions as CV
 
 GearShifter = structs.CarState.GearShifter
@@ -13,7 +13,8 @@ class CarState(CarStateBase):
   def __init__(self, CP):
     super().__init__(CP)
     self.lkas_hud = {}
-
+    self.buttonStates = BUTTON_STATES.copy()
+    
   def update(self, can_parsers) -> structs.CarState:
     cp = can_parsers[Bus.pt]
     cp_cam = can_parsers[Bus.cam]
@@ -98,7 +99,15 @@ class CarState(CarStateBase):
       #f'AEB={cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"]}, '
       #f'GO={cp.vl["RADAR_HSC2_FrP02"]["ACCGoNotfr_RadarHSC2"]}'
     #) 
-        
+
+    # Update control button states for turn signals and ACC controls.
+    self.buttonStates["accelCruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdIncSwA_h2HSC2"])
+    self.buttonStates["decelCruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdDecSwA_h2HSC2"])
+    self.buttonStates["cancel"]       = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsCanclSwA_h2HSC2"])
+    self.buttonStates["setCruise"]    = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSetSwA_h2HSC2"])
+    self.buttonStates["resumeCruise"] = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsRsmSwA_h2HSC2"])
+    self.buttonStates["OnCruise"]     = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsOnSwA_h2HSC2"])
+    
     # forward stock LKAS HUD
 #   self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
     
