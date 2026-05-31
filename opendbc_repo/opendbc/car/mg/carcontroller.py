@@ -43,7 +43,7 @@ class CarController(CarControllerBase):
     if self.CP.openpilotLongitudinalControl:
       accel = float(np.clip(actuators.accel, CarControllerParams.ACCEL_MIN, CarControllerParams.ACCEL_MAX))
       #can_sends.append(mgcan.create_longitudinal(self.packer, self.frame, accel, CC.enabled))
-      print(f"[ACCEL]={actuators.accel:.2f}")
+      #print(f"[ACCEL]={actuators.accel:.2f}")
     else:
       interface_status = None
       if CC.cruiseControl.cancel:
