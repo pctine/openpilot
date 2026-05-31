@@ -1,3 +1,4 @@
+import numpy as np
 from opendbc.can.packer import CANPacker
 from opendbc.car import Bus
 from opendbc.car.lateral import apply_driver_steer_torque_limits
@@ -12,6 +13,7 @@ class CarController(CarControllerBase):
     self.packer = CANPacker(dbc_names[Bus.pt])
     self.apply_torque_last = 0
     self.brake_counter = 0
+    self.frame = 0
 
   def update(self, CC, CS, now_nanos):
     actuators = CC.actuators
