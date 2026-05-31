@@ -14,6 +14,7 @@ class CarController(CarControllerBase):
     self.apply_torque_last = 0
     self.brake_counter = 0
     self.frame = 0
+    self.cancel_frames = 0
 
   def update(self, CC, CS, now_nanos):
     actuators = CC.actuators
