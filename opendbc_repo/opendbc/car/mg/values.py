@@ -98,5 +98,11 @@ class MgSafetyFlags(IntFlag):
   ALT_BRAKE = 2
   NON_EV = 4
 
+class Buttons:
+  NONE = 0
+  SET_PLUS = 1
+  SET_MINUS = 2
+  RESUME = 3
+  CANCEL = 4
 
 DBC = CAR.create_dbc_map()
