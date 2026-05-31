@@ -13,8 +13,6 @@ class CarState(CarStateBase):
   def __init__(self, CP):
     super().__init__(CP)
     self.lkas_hud = {}
-    self.max_steeringTorque = 0.0        # 紀錄最大扭力
-    self.max_steeringTorqueEps = 0.0
 
   def update(self, can_parsers) -> structs.CarState:
     cp = can_parsers[Bus.pt]
@@ -51,11 +49,6 @@ class CarState(CarStateBase):
     ret.steeringTorqueEps = cp.vl["EPS_HSC2_FrP03"]["ChLKARespToqHSC2"]
     ret.steeringPressed = self.update_steering_pressed(abs(ret.steeringTorque) > 1.0, 5)
 
-    # 紀錄最大扭力
-    self.max_steeringTorque = max(self.max_steeringTorque, abs(ret.steeringTorque))
-    self.max_steeringTorqueEps = max(self.max_steeringTorqueEps, abs(ret.steeringTorqueEps))
-    # print(f"TORQUE: {self.max_steeringTorque:.2f}, EPS: {self.max_steeringTorqueEps:.2f}") 
-   
     # Lane Departure Warning System Fault Status（車道偏離警示系統故障狀態)
     ret.steerFaultTemporary = cp_cam.vl["FVCM_HSC2_FrP02"]["LDWSysFltStsHSC2"] != 0  # TODO: validate
     if ret.steerFaultTemporary:
