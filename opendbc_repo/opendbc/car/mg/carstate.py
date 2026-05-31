@@ -59,9 +59,14 @@ class CarState(CarStateBase):
     ret.cruiseState.available = True
     ret.cruiseState.standstill = False  # TODO
     ret.cruiseState.speed = cp.vl["RADAR_HSC2_FrP02"]["ACCDrvrSelTrgtSpd_RadarHSC2"] * CV.KPH_TO_MS
-
     ret.accFaulted = cp_cam.vl["FVCM_HSC2_FrP02"]["TJAICASysFltStsHSC2"] != 0  # TODO: validate
 
+    # 車輛靜止狀態
+    print(
+      f'[593]:{cp.vl["SCS_HSC2_FrP24"]["VehSdslStsHSC2"]}, '
+      f'[578]:{cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"]}'
+    )
+    
     # Gear
     if self.CP.carFingerprint == CAR.MG_ZS:
       ret.gearShifter = GEAR_MAP.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrShftLvrPos_h1HSC2"]), GearShifter.unknown)
