@@ -70,6 +70,14 @@ GEAR_MAP = {
   4: structs.CarState.GearShifter.drive,
 }
 
+BUTTON_STATES = {
+  "accelCruise": False,
+  "decelCruise": False,
+  "cancel": False,
+  "setCruise": False,
+  "resumeCruise": False,
+  "onCruise": False
+}
 
 class CarControllerParams:
   # --- 橫向控制（轉向力矩） ---
@@ -97,6 +105,7 @@ class MgSafetyFlags(IntFlag):
   LONG_CONTROL = 1
   ALT_BRAKE = 2
   NON_EV = 4
+
 
 class Buttons:
   NONE = 0
