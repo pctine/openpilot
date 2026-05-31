@@ -64,7 +64,7 @@ class CarState(CarStateBase):
     # 車輛靜止狀態
     print(
       f'[ACC]:{ret.cruiseState.enabled}, '
-      f'[cruise]:{ret.cruiseState.enabled}, '
+      f'[cruise]:{cp_cam.vl["FVCM_HSC2_FrP02"]["TJAICASysFltStsHSC2"]}, '
       f'[578]:{cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"]}'
     )
     
