@@ -27,8 +27,7 @@ class CarInterface(CarInterfaceBase):
     ret.radarUnavailable = True
 
     ret.alphaLongitudinalAvailable = True
-    #if alpha_long:
-    if True:
+    if alpha_long:
       ret.openpilotLongitudinalControl = True
       ret.safetyConfigs[0].safetyParam |= MgSafetyFlags.LONG_CONTROL.value
 
