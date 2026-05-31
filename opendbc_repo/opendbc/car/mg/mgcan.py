@@ -43,7 +43,7 @@ def create_lkas_hud(packer, lat_active: bool, stock_lkas_hud: dict, hud_control)
    
   return packer.make_can_msg("FVCM_HSC2_FrP02", 2, values)
 
-def create_button_cmd(packer, CP, counter, button):
+def create_button_cmd(packer, counter, button):
   can = int(button == Buttons.CANCEL)
   res = int(button == Buttons.RESUME)
 
