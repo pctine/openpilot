@@ -37,7 +37,7 @@ class CarController(CarControllerBase):
 
     # 修正優化：如果 LKA 根本沒激活，確保回傳給 safety 核心的扭力絕對是 0，避免殘留
     if not CC.latActive:
-        self.apply_torque_last = 0
+      self.apply_torque_last = 0
     
     # Longitudinal control 縱向控制
     if self.CP.openpilotLongitudinalControl:
