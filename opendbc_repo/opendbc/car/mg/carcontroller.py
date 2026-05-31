@@ -44,7 +44,10 @@ class CarController(CarControllerBase):
       accel = float(np.clip(actuators.accel, CarControllerParams.ACCEL_MIN, CarControllerParams.ACCEL_MAX))
       #can_sends.append(mgcan.create_longitudinal(self.packer, self.frame, accel, CC.enabled))
       print(
-        f"[ACCEL]:{actuators.accel:.2f}{CC.cruiseControl.resume}")
+        f"[ACCEL]={actuators.accel:.2f}, " 
+        f"[ENABLE]={CC.enabled}, "
+        f"[STILL]={CS.cruiseState.standstill}, "
+      )
     else:
       interface_status = None
       if CC.cruiseControl.cancel:
