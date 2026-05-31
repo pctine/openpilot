@@ -23,14 +23,13 @@ class CarController(CarControllerBase):
     can_sends = []
 
     # steering command
+    apply_torque = 0
     if self.frame % CarControllerParams.STEER_STEP == 0:
       if CC.latActive:
         # calculate steer and also set limits due to driver torque
         new_torque = int(round(actuators.torque * CarControllerParams.STEER_MAX))
         apply_torque = apply_driver_steer_torque_limits(new_torque, self.apply_torque_last, CS.out.steeringTorque, CarControllerParams)
-      else:
-        apply_torque = 0
-    
+   
       self.apply_torque_last = apply_torque
       can_sends.append(create_lka_steering(self.packer, (self.frame // CarControllerParams.STEER_STEP) % 16, apply_torque, CC.latActive))
       # can_sends.append(create_lkas_hud(self.packer, CC.latActive, CS.lkas_hud, hud_control))
