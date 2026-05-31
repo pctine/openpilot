@@ -87,14 +87,13 @@ class CarState(CarStateBase):
     ret.leftBlindspot  = cp.vl["RDA_HSC1_P02"]["LBSDAndLCAWrnng_HS"] > 0
     ret.rightBlindspot = cp.vl["RDA_HSC1_P02"]["RBSDAndLCAWrnng_HS"] > 0
 
-    # TSR 限速 ret.cruiseState.speedLimit
-    limit_speed = cp_cam.vl["FVCM_HSC2_FrP02"]["TrgtSpdReqCamrHSC2"] 
-    
     # AEB
     ret.stockAeb = False
 
-    # 限速,AEB,車道線
+    # AEB
     # stop & go 起步請求
+    # TSR 限速 ret.cruiseState.speedLimit
+    # limit_speed = cp_cam.vl["FVCM_HSC2_FrP02"]["TrgtSpdReqCamrHSC2"] 
     #print(
     #  f'SPEED:{limit_speed}, '
     #  f'AEB:{cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"]}, '
