@@ -71,12 +71,12 @@ GEAR_MAP = {
 }
 
 BUTTON_STATES = {
-  "accelCruise": False,
-  "decelCruise": False,
+  "accel_cruise": False,
+  "decel_cruise": False,
   "cancel": False,
-  "setCruise": False,
-  "resumeCruise": False,
-  "onCruise": False
+  "set_cruise": False,
+  "resume_cruise": False,
+  "on_cruise": False
 }
 
 class CarControllerParams:
