@@ -33,7 +33,7 @@ class CarState(CarStateBase):
       ret.gasPressed = cp.vl["Tester_HSC2_ECM_FrP00"]["AccelActuPosHSC2"] > 0
     else:
       ret.gasPressed = cp.vl["GW_HSC2_HCU_FrP00"]["EPTAccelActuPosHSC2"] > 0
-
+    
     # Brake pedal
     ret.brake = 0
     if self.CP.carFingerprint == CAR.MG_ZS_EV:
@@ -68,6 +68,12 @@ class CarState(CarStateBase):
     else:
       ret.gearShifter = GEAR_MAP_EV.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrEstdGearHSC2"]), GearShifter.unknown)
 
+    print(
+      f'GEAR={GEAR_MAP.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrShftLvrPos_h1HSC2"]), GearShifter.unknown)}, '
+      f'PEDAL={cp.vl["Tester_HSC2_ECM_FrP00"]["AccelActuPosHSC2"]}, '
+      f'STILL={ret.cruiseState.standstill}, '
+    )
+ 
     # Doors 駕駛及副駕開門狀態 
     ret.doorOpen = any([cp.vl["GW_HSC2_BCM_FrP04"]["DrvrDoorOpenSts_H1_Safety"],
                         cp.vl["GW_HSC2_BCM_FrP04"]["FrtPsngDoorOpenSts_H1_Safety"]])
