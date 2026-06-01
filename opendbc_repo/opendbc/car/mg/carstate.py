@@ -70,7 +70,6 @@ class CarState(CarStateBase):
 
     print(
       f'GEAR={GEAR_MAP.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrShftLvrPos_h1HSC2"]), GearShifter.unknown)}, '
-      f'PEDAL={cp.vl["Tester_HSC2_ECM_FrP00"]["AccelActuPosHSC2"]}, '
       f'STILL={ret.cruiseState.standstill}, '
     )
  
