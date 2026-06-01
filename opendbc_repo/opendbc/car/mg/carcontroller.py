@@ -61,7 +61,14 @@ class CarController(CarControllerBase):
       # Send Resume button when planner wants car to move
       pass
       #can_sends.append(mgcan.create_button_cmd(self.packer, CS.crz_btns_counter, Buttons.RESUME))
-      
+
+    #CC.cruiseControl.resume = CC.enabled and CS.cruiseState.standstill and not self.sm['longitudinalPlan'].shouldStop
+    print(
+      f'ENABLED={CC.enabled}, '
+      f'STILL={CS.cruiseState.standstill}, '
+      f'RESUME={CC.cruiseControl.resume}, '
+    )
+    
     new_actuators = actuators.as_builder()
     new_actuators.torque = self.apply_torque_last / CarControllerParams.STEER_MAX
     new_actuators.torqueOutputCan = self.apply_torque_last
