@@ -70,9 +70,8 @@ class CarState(CarStateBase):
 
     
     print(
-      f'GEAR={ret.gearShifter}, '
+      f'DIST={cp.vl["FVCM_HSC2_FrP02"]["DistSinceTrgtCamrHSC2"]}'
     )
-     #f'DIST={cp.vl["FVCM_HSC2_FrP02"]["DistSinceTrgtCamrHSC2"]}, '
     
     
     # Doors 駕駛及副駕開門狀態 
