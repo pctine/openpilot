@@ -68,12 +68,6 @@ class CarState(CarStateBase):
     else:
       ret.gearShifter = GEAR_MAP_EV.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrEstdGearHSC2"]), GearShifter.unknown)
 
-    
-    print(
-      f'DIST={cp.vl["FVCM_HSC2_FrP02"]["DistSinceTrgtCamrHSC2"]}'
-    )
-    
-    
     # Doors 駕駛及副駕開門狀態 
     ret.doorOpen = any([cp.vl["GW_HSC2_BCM_FrP04"]["DrvrDoorOpenSts_H1_Safety"],
                         cp.vl["GW_HSC2_BCM_FrP04"]["FrtPsngDoorOpenSts_H1_Safety"]])
