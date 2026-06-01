@@ -70,7 +70,7 @@ class CarState(CarStateBase):
 
     
     print(
-      f'GEAR={ret.gear.Shifter}, '
+      f'GEAR={ret.gearShifter}, '
     )
      #f'DIST={cp.vl["FVCM_HSC2_FrP02"]["DistSinceTrgtCamrHSC2"]}, '
     
