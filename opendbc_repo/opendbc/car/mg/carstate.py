@@ -92,7 +92,7 @@ class CarState(CarStateBase):
     # AEB
     # stop & go 起步請求
     # TSR 限速 ret.cruiseState.speedLimit
-    if alpha_long:
+    #if alpha_long:
       #limit_speed = cp_cam.vl.get("FVCM_HSC2_FrP02", {}).get("TrgtSpdReqCamrHSC2", 0)
       #aeb = cp.vl.get("RADAR_HSC2_FrP02", {}).get("AEBMsgReqHSC2", 0)
       #go = cp.vl.get("RADAR_HSC2_FrP02", {}).get("ACCGoNotfr_RadarHSC2", 0)
