@@ -8,7 +8,6 @@ from opendbc.car.common.conversions import Conversions as CV
 
 GearShifter = structs.CarState.GearShifter
 
-
 class CarState(CarStateBase):
   def __init__(self, CP):
     super().__init__(CP)
@@ -93,12 +92,15 @@ class CarState(CarStateBase):
     # AEB
     # stop & go 起步請求
     # TSR 限速 ret.cruiseState.speedLimit
-    limit_speed = cp_cam.vl["FVCM_HSC2_FrP02"]["TrgtSpdReqCamrHSC2"] 
-    #print(
-      #f'SPEED={limit_speed}, '
-      #f'AEB={cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"]}, '
-      #f'GO={cp.vl["RADAR_HSC2_FrP02"]["ACCGoNotfr_RadarHSC2"]}'
-    #) 
+    if alpha_long:
+      limit_speed = cp_cam.vl.get("FVCM_HSC2_FrP02", {}).get("TrgtSpdReqCamrHSC2", 0)
+      aeb = cp.vl.get("RADAR_HSC2_FrP02", {}).get("AEBMsgReqHSC2", 0)
+      go = cp.vl.get("RADAR_HSC2_FrP02", {}).get("ACCGoNotfr_RadarHSC2", 0)
+      print(
+        f'SPEED={limit_speed}, '
+        f'AEB={aeb}, '
+        f'GO={go}'
+      ) 
 
     # Update control button states for turn signals and ACC controls.
     self.button_states["accel_cruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdIncSwA_h2HSC2"])
