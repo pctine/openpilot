@@ -1,5 +1,6 @@
 import os
 import time
+import json
 
 from opendbc.car import gen_empty_fingerprint
 from opendbc.car.can_definitions import CanRecvCallable, CanSendCallable
@@ -145,6 +146,26 @@ def fingerprint(can_recv: CanRecvCallable, can_send: CanSendCallable, set_obd_mu
                 "cached": cached, "fw_count": len(car_fw), "ecu_responses": list(ecu_rx_addrs), "vin_rx_addr": vin_rx_addr,
                 "vin_rx_bus": vin_rx_bus, "fingerprints": repr(finger), "fw_query_time": fw_query_time})
 
+  # DEBUG
+  log_path = "/data/media/0/fingerprint_debug.log"
+  log_data = {
+    "time": time.time(),
+    "event": "fingerprinted",
+    "car_fingerprint": str(car_fingerprint),
+    "source": str(source),
+    "fuzzy": not exact_match,
+    "cached": cached,
+    "fw_count": len(car_fw),
+    "ecu_responses": list(ecu_rx_addrs),
+    "vin_rx_addr": vin_rx_addr,
+    "vin_rx_bus": vin_rx_bus,
+    "fingerprints": repr(finger),
+    "fw_query_time": fw_query_time
+  }
+
+  with open(log_path, "a") as f:
+    f.write(json.dumps(log_data) + "\n")
+                
   return car_fingerprint, finger, vin, car_fw, source, exact_match
 
 
