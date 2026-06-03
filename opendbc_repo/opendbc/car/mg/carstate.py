@@ -96,14 +96,6 @@ class CarState(CarStateBase):
       #limit_speed = cp_cam.vl.get("FVCM_HSC2_FrP02", {}).get("TrgtSpdReqCamrHSC2", 0)
       #aeb = cp.vl.get("RADAR_HSC2_FrP02", {}).get("AEBMsgReqHSC2", 0)
       #go = cp.vl.get("RADAR_HSC2_FrP02", {}).get("ACCGoNotfr_RadarHSC2", 0)
-      limit_speed=1
-      aeb=2
-      go=3
-      print(
-        f'SPEED={limit_speed}, '
-        f'AEB={aeb}, '
-        f'GO={go}'
-      ) 
 
     # Update control button states for turn signals and ACC controls.
     self.button_states["accel_cruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdIncSwA_h2HSC2"])
