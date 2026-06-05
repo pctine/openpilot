@@ -92,11 +92,11 @@ class CarState(CarStateBase):
     # AEB
     # stop & go 起步請求
     # TSR 限速 ret.cruiseState.speedLimit
-    #if alpha_long:
-      #limit_speed = cp_cam.vl.get("FVCM_HSC2_FrP02", {}).get("TrgtSpdReqCamrHSC2", 0)
-      #aeb = cp.vl.get("RADAR_HSC2_FrP02", {}).get("AEBMsgReqHSC2", 0)
-      #go = cp.vl.get("RADAR_HSC2_FrP02", {}).get("ACCGoNotfr_RadarHSC2", 0)
-
+    #limit_speed = cp_cam.vl.get("FVCM_HSC2_FrP02", {}).get("TrgtSpdReqCamrHSC2", 0)
+    #aeb = cp.vl.get("RADAR_HSC2_FrP02", {}).get("AEBMsgReqHSC2", 0)
+    #go = cp.vl.get("RADAR_HSC2_FrP02", {}).get("ACCGoNotfr_RadarHSC2", 0)
+    print(f'[GO]={cp.vl["RADAR_HSC2_FrP02"]["ACCGoNotfr_RadarHSC2"]}')
+    
     # Update control button states for turn signals and ACC controls.
     self.button_states["accel_cruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdIncSwA_h2HSC2"])
     self.button_states["decel_cruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdDecSwA_h2HSC2"])
@@ -104,15 +104,6 @@ class CarState(CarStateBase):
     self.button_states["set_cruise"]    = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSetSwA_h2HSC2"])
     self.button_states["resume_cruise"] = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsRsmSwA_h2HSC2"])
     self.button_states["on_cruise"]     = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsOnSwA_h2HSC2"])
-
-    print(
-      f'acc={self.button_states["accel_cruise"]},'
-      f'dec={self.button_states["decel_cruise"]},'
-      f'cancel={self.button_states["cancel"]},'
-      f'set={self.button_states["set_cruise"]},'
-      f'resume={self.button_states["resume_cruise"]},'
-      f'on={self.button_states["on_cruise"]},'
-    )
     
     # forward stock LKAS HUD
 #   self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
