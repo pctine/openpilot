@@ -241,6 +241,7 @@ BO_ 1130 GW_HSC2_BCM_FrP04: 8 GW
  SG_ VehSideLghtStsHSC2 : 57|2@0+ (1,0) [0|3] ""  FVCM
  SG_ DrvrDoorOpenSts_H1_Safety : 47|2@0+ (1,0) [0|3] ""  xxx
  SG_ FrtPsngDoorOpenSts_H1_Safety : 43|2@0+ (1,0) [0|3] ""  xxx
+ SG_ RRDoorOpenSts_Safety : 41|2@0+ (1,0) [0|3] ""  xxx
 
 VAL_ 355 AirbagDplInvsnHSC2 1 "No Airbag Deployed" 0 "Airbag Deployed";
 VAL_ 355 AirbagDplHSC2 1 "True" 0 "False";
