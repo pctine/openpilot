@@ -104,6 +104,15 @@ class CarState(CarStateBase):
     self.button_states["set_cruise"]    = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSetSwA_h2HSC2"])
     self.button_states["resume_cruise"] = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsRsmSwA_h2HSC2"])
     self.button_states["on_cruise"]     = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsOnSwA_h2HSC2"])
+
+    print(
+      f'acc={self.button_states["accel_cruise"]},'
+      f'dec={self.button_states["decel_cruise"]},'
+      f'cancel={self.button_states["cancel"]},'
+      f'set={self.button_states["set_cruise"]},'
+      f'resume={self.button_states["resume_cruise"]},'
+      f'on={self.button_states["on_cruise"]},'
+    )
     
     # forward stock LKAS HUD
 #   self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
