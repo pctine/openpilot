@@ -13,7 +13,7 @@ class CarState(CarStateBase):
     super().__init__(CP)
     self.lkas_hud = {}
     self.button_states = BUTTON_STATES.copy()
-    
+
   def update(self, can_parsers) -> structs.CarState:
     cp = can_parsers[Bus.pt]
     cp_cam = can_parsers[Bus.cam]
@@ -32,7 +32,7 @@ class CarState(CarStateBase):
       ret.gasPressed = cp.vl["Tester_HSC2_ECM_FrP00"]["AccelActuPosHSC2"] > 0
     else:
       ret.gasPressed = cp.vl["GW_HSC2_HCU_FrP00"]["EPTAccelActuPosHSC2"] > 0
-    
+
     # Brake pedal
     ret.brake = 0
     if self.CP.carFingerprint == CAR.MG_ZS_EV:
@@ -53,7 +53,7 @@ class CarState(CarStateBase):
     ret.steerFaultTemporary = cp_cam.vl["FVCM_HSC2_FrP02"]["LDWSysFltStsHSC2"] != 0  # TODO: validate
     if ret.steerFaultTemporary:
       print("(Steer Fault Temporary)！")
-     
+
     # Cruise state
     ret.cruiseState.enabled = cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"] in (2, 3)  # Active, Override
     ret.cruiseState.available = True
@@ -67,10 +67,10 @@ class CarState(CarStateBase):
     else:
       ret.gearShifter = GEAR_MAP_EV.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrEstdGearHSC2"]), GearShifter.unknown)
 
-    # Doors 駕駛及副駕開門狀態 
+    # Doors 駕駛及副駕開門狀態
     ret.doorOpen = any([cp.vl["GW_HSC2_BCM_FrP04"]["DrvrDoorOpenSts_H1_Safety"],
                         cp.vl["GW_HSC2_BCM_FrP04"]["FrtPsngDoorOpenSts_H1_Safety"]])
-    
+
     # Blinkers
     if self.CP.carFingerprint == CAR.MG_ZS:
       ret.leftBlinker = bool(cp.vl["GW_HSC2_BCM_FrP04"]["BlinkerLeft"])
@@ -95,8 +95,8 @@ class CarState(CarStateBase):
     #limit_speed = cp_cam.vl.get("FVCM_HSC2_FrP02", {}).get("TrgtSpdReqCamrHSC2", 0)
     #aeb = cp.vl.get("RADAR_HSC2_FrP02", {}).get("AEBMsgReqHSC2", 0)
     #go = cp.vl.get("RADAR_HSC2_FrP02", {}).get("ACCGoNotfr_RadarHSC2", 0)
-    print(f'[GO]={cp.vl["RADAR_HSC2_FrP02"]["ACCGoNotfr_RadarHSC2"]}')
-    
+    #print(f'[GO]={cp.vl["RADAR_HSC2_FrP02"]["ACCGoNotfr_RadarHSC2"]}')
+
     # Update control button states for turn signals and ACC controls.
     self.button_states["accel_cruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdIncSwA_h2HSC2"])
     self.button_states["decel_cruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdDecSwA_h2HSC2"])
@@ -104,10 +104,10 @@ class CarState(CarStateBase):
     self.button_states["set_cruise"]    = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSetSwA_h2HSC2"])
     self.button_states["resume_cruise"] = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsRsmSwA_h2HSC2"])
     self.button_states["on_cruise"]     = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsOnSwA_h2HSC2"])
-    
+
     # forward stock LKAS HUD
 #   self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
-    
+
     return ret
 
   @staticmethod
