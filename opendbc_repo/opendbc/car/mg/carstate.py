@@ -61,6 +61,18 @@ class CarState(CarStateBase):
     ret.cruiseState.speed = cp.vl["RADAR_HSC2_FrP02"]["ACCDrvrSelTrgtSpd_RadarHSC2"] * CV.KPH_TO_MS
     ret.accFaulted = cp_cam.vl["FVCM_HSC2_FrP02"]["TJAICASysFltStsHSC2"] != 0  # TODO: validate
 
+    # Sts(ACC狀態),ACC(加速度值),BRK(要求煞車),OBJ(是否有前車),DIST(前車距離),FCW(碰撞),AEB(作動)
+    print(
+      f'Sts={cp.vl["RADAR_HSC2_FrP00"]["ACCAccReqStsHSC2"]},'
+      f'ACC={cp.vl["RADAR_HSC2_FrP00"]["ACCAccReqValHSC2"].f2},'
+      f'BRK={cp.vl["RADAR_HSC2_FrP00"]["ACCReqBrkPrfrdHSC2"]},'
+      f'OBJ={cp.vl["RADAR_HSC2_FrP02"]["ACCObjDet_RadarHSC2"]},'
+      f'DIST={cp.vl["RADAR_HSC2_FrP02"]["ACCDetObjDistLvl_RadarHSC2"]},'
+      f'FCW={cp.vl["RADAR_HSC2_FrP02"]["FCWrnngSts_RadarHSC2"]},'
+      f'AEB={cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"]},'
+    )
+    
+    
     # Gear
     if self.CP.carFingerprint == CAR.MG_ZS:
       ret.gearShifter = GEAR_MAP.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrShftLvrPos_h1HSC2"]), GearShifter.unknown)
