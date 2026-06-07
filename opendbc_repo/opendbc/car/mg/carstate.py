@@ -65,8 +65,9 @@ class CarState(CarStateBase):
     print(
       f'Sts={cp.vl["RADAR_HSC2_FrP00"]["ACCAccReqStsHSC2"]},'
       f'BRK={cp.vl["RADAR_HSC2_FrP00"]["ACCReqBrkPrfrdHSC2"]},'
-      f'OBJ={cp.vl["RADAR_HSC2_FrP02"]["ACCObjDet_RadarHSC2"]},'
-      f'DIST={cp.vl["RADAR_HSC2_FrP02"]["ACCDetObjDistLvl_RadarHSC2"]},'
+      f'ACC={cp.vl["RADAR_HSC2_FrP02"]["ACCMsgReqHSC2"]},'
+      f'CNL={cp.vl["RADAR_HSC2_FrP02"]["ACCSysCanclReq_RadarHSC2"]},'
+      f'DIST={cp.vl["RADAR_HSC2_FrP02"]["ACCDrvrSeldTrgtDistLvl_RadarHSC2"]},'
       f'FCW={cp.vl["RADAR_HSC2_FrP02"]["FCWrnngSts_RadarHSC2"]},'
       f'AEB={cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"]},'
     )
