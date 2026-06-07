@@ -61,17 +61,14 @@ class CarState(CarStateBase):
     ret.cruiseState.speed = cp.vl["RADAR_HSC2_FrP02"]["ACCDrvrSelTrgtSpd_RadarHSC2"] * CV.KPH_TO_MS
     ret.accFaulted = cp_cam.vl["FVCM_HSC2_FrP02"]["TJAICASysFltStsHSC2"] != 0  # TODO: validate
 
-    # Sts(ACC狀態),ACC(加速度值),BRK(要求煞車),OBJ(是否有前車),DIST(前車距離),FCW(碰撞),AEB(作動)
+    # Sts(ACC狀態),ACC(加速度值),BRK(要求煞車),OBJ(是否有前車),DIST(前車距離)
     print(
       f'Sts={cp.vl["RADAR_HSC2_FrP00"]["ACCAccReqStsHSC2"]},'
       f'BRK={cp.vl["RADAR_HSC2_FrP00"]["ACCReqBrkPrfrdHSC2"]},'
       f'ACC={cp.vl["RADAR_HSC2_FrP02"]["ACCMsgReqHSC2"]},'
       f'CNL={cp.vl["RADAR_HSC2_FrP02"]["ACCSysCanclReq_RadarHSC2"]},'
       f'DIST={cp.vl["RADAR_HSC2_FrP02"]["ACCDrvrSeldTrgtDistLvl_RadarHSC2"]},'
-      f'FCW={cp.vl["RADAR_HSC2_FrP02"]["FCWrnngSts_RadarHSC2"]},'
-      f'AEB={cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"]},'
     )
-    
     
     # Gear
     if self.CP.carFingerprint == CAR.MG_ZS:
@@ -99,13 +96,15 @@ class CarState(CarStateBase):
     ret.rightBlindspot = cp.vl["RDA_HSC1_P02"]["RBSDAndLCAWrnng_HS"] > 0
 
     # AEB
-    ret.stockAeb = False
+    # ret.stockAeb = False
+    ret.stockAeb = (
+      cp.vl["RADAR_HSC2_FrP02"]["FCWrnngSts_RadarHSC2"] != 0 or
+      cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"] != 0
+    )
 
-    # AEB
     # stop & go 起步請求
     # TSR 限速 ret.cruiseState.speedLimit
     #limit_speed = cp_cam.vl.get("FVCM_HSC2_FrP02", {}).get("TrgtSpdReqCamrHSC2", 0)
-    #aeb = cp.vl.get("RADAR_HSC2_FrP02", {}).get("AEBMsgReqHSC2", 0)
     #go = cp.vl.get("RADAR_HSC2_FrP02", {}).get("ACCGoNotfr_RadarHSC2", 0)
     #print(f'[GO]={cp.vl["RADAR_HSC2_FrP02"]["ACCGoNotfr_RadarHSC2"]}')
 
