@@ -64,7 +64,6 @@ class CarState(CarStateBase):
     # Sts(ACC狀態),ACC(加速度值),BRK(要求煞車),OBJ(是否有前車),DIST(前車距離),FCW(碰撞),AEB(作動)
     print(
       f'Sts={cp.vl["RADAR_HSC2_FrP00"]["ACCAccReqStsHSC2"]},'
-      f'ACC={cp.vl["RADAR_HSC2_FrP00"]["ACCAccReqValHSC2"].f2},'
       f'BRK={cp.vl["RADAR_HSC2_FrP00"]["ACCReqBrkPrfrdHSC2"]},'
       f'OBJ={cp.vl["RADAR_HSC2_FrP02"]["ACCObjDet_RadarHSC2"]},'
       f'DIST={cp.vl["RADAR_HSC2_FrP02"]["ACCDetObjDistLvl_RadarHSC2"]},'
