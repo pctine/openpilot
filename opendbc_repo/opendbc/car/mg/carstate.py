@@ -55,7 +55,8 @@ class CarState(CarStateBase):
       print("(Steer Fault Temporary)！")
 
     # Cruise state
-    ret.cruiseState.available = True
+    #ret.cruiseState.available = True
+    ret.cruiseState.available = cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"] != 0
     ret.cruiseState.enabled = cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"] in (2, 3)  # Active, Override
     ret.cruiseState.standstill = cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"] == 6
     ret.cruiseState.speed = cp.vl["RADAR_HSC2_FrP02"]["ACCDrvrSelTrgtSpd_RadarHSC2"] * CV.KPH_TO_MS
