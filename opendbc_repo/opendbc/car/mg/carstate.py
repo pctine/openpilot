@@ -55,8 +55,8 @@ class CarState(CarStateBase):
       print("(Steer Fault Temporary)！")
 
     # Cruise state
-    #ret.cruiseState.available = True
-    ret.cruiseState.available = cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"] != 0
+    ret.cruiseState.available = True
+    #ret.cruiseState.available = cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"] != 0
     ret.cruiseState.enabled = cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"] in (2, 3)  # Active, Override
     ret.cruiseState.standstill = cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"] == 6
     ret.cruiseState.speed = cp.vl["RADAR_HSC2_FrP02"]["ACCDrvrSelTrgtSpd_RadarHSC2"] * CV.KPH_TO_MS
@@ -64,10 +64,8 @@ class CarState(CarStateBase):
 
     # Sts(ACC狀態),ACC(加速度值),BRK(要求煞車),OBJ(是否有前車),DIST(前車距離)
     print(
-      f'FAULT={cp_cam.vl["FVCM_HSC2_FrP02"]["TJAICASysFltStsHSC2"]},'
       f'STS={cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"]},'
       f'ACC={ret.cruiseState.enabled},'
-      f'STILL={cruiseState.standstill},'
     )
     
     # Gear
