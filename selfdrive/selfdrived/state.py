@@ -4,7 +4,7 @@ from openpilot.common.realtime import DT_CTRL
 
 State = log.SelfdriveState.OpenpilotState
 
-SOFT_DISABLE_TIME = 3  # seconds
+SOFT_DISABLE_TIME = 3 # seconds
 ACTIVE_STATES = (State.enabled, State.softDisabling, State.overriding)
 ENABLED_STATES = (State.preEnabled, *ACTIVE_STATES)
 
@@ -96,7 +96,6 @@ class StateMachine:
       self.current_alert_types.append(ET.WARNING)
 
     # 新增的 print 偵錯訊息
-    print(f"[StateMachine] State: {self.state.name:<15} | Enabled: {str(enabled):<5} | Active: {str(active):<5}")    
+    print(f"[StateMachine] State: {str(self.state):<15} | Enabled: {str(enabled):<5} | Active: {str(active):<5}")    
         
     return enabled, active
-
