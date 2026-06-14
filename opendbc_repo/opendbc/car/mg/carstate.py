@@ -63,11 +63,10 @@ class CarState(CarStateBase):
 
     # Sts(ACC狀態),ACC(加速度值),BRK(要求煞車),OBJ(是否有前車),DIST(前車距離)
     print(
-      f'Sts={cp.vl["RADAR_HSC2_FrP00"]["ACCAccReqStsHSC2"]},'
-      f'BRK={cp.vl["RADAR_HSC2_FrP00"]["ACCReqBrkPrfrdHSC2"]},'
-      f'ACC={cp.vl["RADAR_HSC2_FrP02"]["ACCMsgReqHSC2"]},'
-      f'CNL={cp.vl["RADAR_HSC2_FrP02"]["ACCSysCanclReq_RadarHSC2"]},'
-      f'DIST={cp.vl["RADAR_HSC2_FrP02"]["ACCDrvrSeldTrgtDistLvl_RadarHSC2"]},'
+      f'FAULT={cp_cam.vl["FVCM_HSC2_FrP02"]["TJAICASysFltStsHSC2"]},'
+      f'STS={cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"]},'
+      f'ACC={ret.cruiseState.enabled},'
+      f'STILL={cruiseState.standstill},'
     )
     
     # Gear
