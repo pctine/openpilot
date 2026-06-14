@@ -63,10 +63,10 @@ class CarState(CarStateBase):
     ret.accFaulted = cp_cam.vl["FVCM_HSC2_FrP02"]["TJAICASysFltStsHSC2"] != 0  # TODO: validate
 
     # Sts(ACC狀態),ACC(加速度值),BRK(要求煞車),OBJ(是否有前車),DIST(前車距離)
-    print(
-      f'STS={cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"]},'
-      f'ACC={ret.cruiseState.enabled},'
-    )
+    #print(
+    #  f'STS={cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"]},'
+    #  f'ACC={ret.cruiseState.enabled},'
+    #)
     
     # Gear
     if self.CP.carFingerprint == CAR.MG_ZS:
