@@ -94,5 +94,9 @@ class StateMachine:
     active = self.state in ACTIVE_STATES
     if active:
       self.current_alert_types.append(ET.WARNING)
+
+    # 新增的 print 偵錯訊息
+    print(f"[StateMachine] State: {self.state.name:<15} | Enabled: {str(enabled):<5} | Active: {str(active):<5}")    
+        
     return enabled, active
 
