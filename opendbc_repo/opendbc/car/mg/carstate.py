@@ -63,7 +63,6 @@ class CarState(CarStateBase):
     else:
       ret.gearShifter = GEAR_MAP_EV.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrEstdGearHSC2"]), GearShifter.unknown)
 
-
     # Doors 駕駛及副駕開門狀態
     ret.doorOpen = any([cp.vl["GW_HSC2_BCM_FrP04"]["DrvrDoorOpenSts_H1_Safety"],
                         cp.vl["GW_HSC2_BCM_FrP04"]["FrtPsngDoorOpenSts_H1_Safety"]])
@@ -84,12 +83,9 @@ class CarState(CarStateBase):
     ret.rightBlindspot = cp.vl["RDA_HSC1_P02"]["RBSDAndLCAWrnng_HS"] > 0
 
     # AEB
-    ret.stockAeb = False
-    #ret.stockAeb = (
-      #cp.vl["RADAR_HSC2_FrP02"]["FCWrnngSts_RadarHSC2"] != 0 or
-      #cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"] != 0
-    #)
-
+    #ret.stockAeb = False
+    ret.stockAeb = cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"] > 0
+    
     return ret
 
   @staticmethod
