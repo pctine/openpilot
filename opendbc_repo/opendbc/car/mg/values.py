@@ -36,7 +36,7 @@ class CAR(Platforms):
     [
       MgCarDocs("MG ZS 2025"),
     ],
-    CarSpecs(mass=1295., wheelbase=2.58, steerRatio=15.8),
+    CarSpecs(mass=1548., wheelbase=2.72, steerRatio=15.8),
   )
 
 
@@ -73,13 +73,13 @@ GEAR_MAP = {
 
 class CarControllerParams:
   STEER_STEP = 2  # FVCM_HSC2_FrP03 message frequency 50Hz
-  STEER_MAX = 300
+  STEER_MAX = 250
   
-  #STEER_DELTA_UP = 10      # torque increase per refresh
-  #STEER_DELTA_DOWN = 15    # torque decrease per refresh
+  STEER_DELTA_UP = 10      # torque increase per refresh
+  STEER_DELTA_DOWN = 15    # torque decrease per refresh
   # for MG-ZS
-  STEER_DELTA_UP = 8      # torque increase per refresh
-  STEER_DELTA_DOWN = 8    # torque decrease per refresh
+  #STEER_DELTA_UP = 8      # torque increase per refresh
+  #STEER_DELTA_DOWN = 8    # torque decrease per refresh
   
   STEER_DRIVER_ALLOWANCE = 100  # allowed driver torque before start limiting
   STEER_DRIVER_MULTIPLIER = 2  # weight driver torque
