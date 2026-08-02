@@ -26,11 +26,15 @@ class CarInterface(CarInterfaceBase):
     ret.steerControlType = structs.CarParams.SteerControlType.torque
     ret.radarUnavailable = True
 
+    # Shadow longitudinal：
+    # 讓 openpilot 執行縱向規劃與 LongControl 計算，
+    # 但 CarController 不送任何縱向 CAN 訊息
     ret.alphaLongitudinalAvailable = False
-    if alpha_long:
-      ret.openpilotLongitudinalControl = True
-      ret.safetyConfigs[0].safetyParam |= MgSafetyFlags.LONG_CONTROL.value
+    ret.openpilotLongitudinalControl = True
 
+    # Engagement 繼續跟隨原車 ACC 狀態
+    ret.pcmCruise = True
+    
     ret.longitudinalActuatorDelay = 0.35
     ret.vEgoStopping = 0.25
     ret.stopAccel = 0
