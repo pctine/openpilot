@@ -20,14 +20,14 @@ class CarController(CarControllerBase):
 
     # Shadow longitudinal debug
     # 只顯示 openpilot 計算結果，不送任何縱向 CAN
-    if self.frame % 20 == 0:
-      print(
-        f"enabled={CC.enabled}, "
-        f"longActive={CC.longActive}, "
-        f"accel={actuators.accel:.3f}, "
-        f"longState={actuators.longControlState}, "
-        f"torque={actuators.torque:.2f}"
-      )
+    #if self.frame % 20 == 0:
+    #  print(
+    #    f"enabled={CC.enabled}, "
+    #    f"longActive={CC.longActive}, "
+    #    f"accel={actuators.accel:.3f}, "
+    #    f"longState={actuators.longControlState}, "
+    #    f"torque={actuators.torque:.2f}"
+    #  )
     
     # steering command
     if self.frame % CarControllerParams.STEER_STEP == 0:
