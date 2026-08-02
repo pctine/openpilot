@@ -15,6 +15,9 @@ class CarInterface(CarInterfaceBase):
 
     ret.safetyConfigs = [get_safety_config(structs.CarParams.SafetyModel.mg)]
 
+    # DEBUG
+    print(f"MG interface called: candidate={candidate}")
+    
     if candidate == CAR.MG_ZS_EV:
       ret.safetyConfigs[0].safetyParam |= MgSafetyFlags.ALT_BRAKE.value
     elif candidate == CAR.MG_ZS:
