@@ -22,11 +22,11 @@ class CarController(CarControllerBase):
     # 只顯示 openpilot 計算結果，不送任何縱向 CAN
     if self.frame % 20 == 0:
       print(
-        f"MG LONG: "
         f"enabled={CC.enabled}, "
         f"longActive={CC.longActive}, "
         f"accel={actuators.accel:.3f}, "
-        f"longState={actuators.longControlState}"
+        f"longState={actuators.longControlState}, "
+        f"torque={actuators.torque:.2f}"
       )
     
     # steering command
