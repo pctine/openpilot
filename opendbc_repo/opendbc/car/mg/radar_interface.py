@@ -76,6 +76,11 @@ class RadarInterface(RadarInterfaceBase):
         self.pts.pop(track_id, None)
         continue
 
+      
+      #debug
+      continue
+
+
       track = self.pts.setdefault(track_id, TrackPointInternal(track_id))
       track.updated_this_frame = True
       track.stale_count = 0
