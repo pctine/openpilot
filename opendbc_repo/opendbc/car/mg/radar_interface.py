@@ -19,7 +19,7 @@ def get_can_parser(CP):
   return CANParser(
     DBC[CP.carFingerprint][Bus.pt],
     messages,
-    Bus.radar,
+    1,
   )
 
 
@@ -60,6 +60,17 @@ class RadarInterface(RadarInterfaceBase):
     for msg in self.rcp.vl_all.get(RADAR_MSG, []):
       track_id = int(msg["ACCDetObjIdHSC2"])
       exist_prob = float(msg["ACCDetObjExistPrbltyHSC2"])
+
+      print(
+        f"901 "
+        f"ID={msg['ACCDetObjIdHSC2']:2d} "
+        f"P={msg['ACCDetObjExistPrbltyHSC2']:.3f} "
+        f"D={msg['ACCDetObjLongtRltvDistHSC2']:7.2f}m "
+        f"Y={msg['ACCDetObjLatRltvDistHSC2']:7.2f}m "
+        f"V={msg['ACCDetObjLongtRltvSpdHSC2']:7.2f}m/s "
+        f"Sync={msg['ACCDetObjSyncCtrHSC2']}"
+      )      
+
 
       if exist_prob < PROB_THRESHOLD:
         self.pts.pop(track_id, None)
