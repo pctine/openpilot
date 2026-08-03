@@ -29,10 +29,7 @@ class CarInterface(CarInterfaceBase):
     ret.steerControlType = structs.CarParams.SteerControlType.torque
     
     # 1. 啟用實體雷達 (不再將雷達標記為不可用)
-    ret.radarUnavailable = False
-
-    # 2. 指定雷達掛載在 CAN Bus 1 (對應 Bus.radar / CP.radarDataA)
-    ret.radarDataA = 1
+    ret.radarUnavailable = True
 
     # Shadow longitudinal：
     # 讓 openpilot 執行縱向規劃與 LongControl 計算，
