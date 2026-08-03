@@ -27,7 +27,12 @@ class CarInterface(CarInterfaceBase):
     CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
 
     ret.steerControlType = structs.CarParams.SteerControlType.torque
-    ret.radarUnavailable = True
+    
+    # 1. 啟用實體雷達 (不再將雷達標記為不可用)
+    ret.radarUnavailable = False
+
+    # 2. 指定雷達掛載在 CAN Bus 1 (對應 Bus.radar / CP.radarDataA)
+    ret.radarDataA = 1
 
     # Shadow longitudinal：
     # 讓 openpilot 執行縱向規劃與 LongControl 計算，
