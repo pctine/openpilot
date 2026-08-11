@@ -35,7 +35,7 @@ class CarState(CarStateBase):
     if self.CP.carFingerprint == CAR.MG_ZS_EV:
       ret.brakePressed = cp.vl["GW_HSC2_HCU_FrP00"]["EPTBrkPdlDscrtInptStsHSC2"] == 1
     elif self.CP.carFingerprint == CAR.MG_ZS:
-      ret.brakePressed = cp.vl["SCS_HSC2_FrP09"]["BrkPdlDrvrAppdPrsHSC2"] > 0
+      ret.brakePressed = cp.vl["SCS_HSC2_FrP09"]["BrkPdlDrvrAppdPrsHSC2"] > 100
     else:
       ret.brakePressed = cp.vl["EHBS_HSC2_FrP00"]["BrkPdlAppdHSC2"] == 1
 
