@@ -20,7 +20,7 @@ class CarInterface(CarInterfaceBase):
     elif candidate == CAR.MG_ZS:
       ret.safetyConfigs[0].safetyParam |= MgSafetyFlags.NON_EV.value
 
-    ret.steerActuatorDelay = 0.3
+    ret.steerActuatorDelay = 0.2
     CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
 
     ret.steerControlType = structs.CarParams.SteerControlType.torque
