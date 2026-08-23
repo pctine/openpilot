@@ -35,8 +35,5 @@ FW_VERSIONS = {
     (Ecu.fwdCamera, 0x733, None): [
       b'\x10\x89wQ\x01',
     ],
-    (Ecu.fwdRadar, 0x734, None): [
-      # NO RESPONSE
-    ],
   },
 }
