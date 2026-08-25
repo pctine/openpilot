@@ -70,15 +70,6 @@ GEAR_MAP = {
   4: structs.CarState.GearShifter.drive,
 }
 
-BUTTON_STATES = {
-  "accel_cruise": False,
-  "decel_cruise": False,
-  "cancel": False,
-  "set_cruise": False,
-  "resume_cruise": False,
-  "on_cruise": False
-}
-
 class CarControllerParams:
   # --- 橫向控制（轉向力矩） ---
   STEER_STEP = 2               # FVCM_HSC2_FrP03 訊息發送步長，Base 100Hz / 2 = 50Hz (每20ms發送一次)
@@ -105,13 +96,5 @@ class MgSafetyFlags(IntFlag):
   LONG_CONTROL = 1
   ALT_BRAKE = 2
   NON_EV = 4
-
-
-class Buttons:
-  NONE = 0
-  SET_PLUS = 1
-  SET_MINUS = 2
-  RESUME = 3
-  CANCEL = 4
 
 DBC = CAR.create_dbc_map()
