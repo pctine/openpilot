@@ -1,5 +1,3 @@
-from opendbc.car.mg.values import Buttons
-
 def calc_checksum(values):
   lka_req_toq = values['LKAReqToqHSC2'] + 1024
   lka_req_toq_sts = values['LKAReqToqStsHSC2']
@@ -29,55 +27,3 @@ def create_lka_steering(packer, counter, apply_torque, active):
 
   values["LKAReqToqPVHSC2"] = calc_checksum(values)
   return packer.make_can_msg("FVCM_HSC2_FrP03", 0, values)
-
-def create_lkas_hud(packer, lat_active: bool, stock_lkas_hud: dict, hud_control):
-  values = dict(stock_lkas_hud)
-
-  print(f"[HUD] LEFT: {values.get('LDWLKALVsulznReqHSC2')}, RIGHT: {values.get('LDWLKARVsulznReqHSC2')}")
-  
-  if lat_active:
-    # values["HandOffStrgWhlDetnStaHSC2"] = 1
-    # values["LDWLKALVsulznReqHSC2"] = 2
-    # values["LDWLKARVsulznReqHSC2"] = 2
-    pass
-   
-  return packer.make_can_msg("FVCM_HSC2_FrP02", 2, values)
-
-def create_button_cmd(packer, counter, button):
-  can = int(button == Buttons.CANCEL)
-  res = int(button == Buttons.RESUME)
-
-  values = {
-    "CAN_OFF": can,
-    "CAN_OFF_INV": (can + 1) % 2,
-
-    "SET_P": 0,
-    "SET_P_INV": 1,
-
-    "RES": res,
-    "RES_INV": (res + 1) % 2,
-
-    "SET_M": 0,
-    "SET_M_INV": 1,
-
-    "DISTANCE_LESS": 0,
-    "DISTANCE_LESS_INV": 1,
-
-    "DISTANCE_MORE": 0,
-    "DISTANCE_MORE_INV": 1,
-
-    "MODE_X": 0,
-    "MODE_X_INV": 1,
-
-    "MODE_Y": 0,
-    "MODE_Y_INV": 1,
-
-    "BIT1": 1,
-    "BIT2": 1,
-    "BIT3": 1,
-    "CTR": (counter + 1) % 16,
-  }
-
-  #return packer.make_can_msg("CRZ_BTNS", 0, values)
-  return []
-  
