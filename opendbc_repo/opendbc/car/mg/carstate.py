@@ -51,8 +51,6 @@ class CarState(CarStateBase):
 
     # Lane Departure Warning System Fault Status（車道偏離警示系統故障狀態)
     ret.steerFaultTemporary = cp_cam.vl["FVCM_HSC2_FrP02"]["LDWSysFltStsHSC2"] != 0  # TODO: validate
-    if ret.steerFaultTemporary:
-      print("(Steer Fault Temporary)！")
 
     # Cruise state
     ret.cruiseState.available = True
@@ -61,13 +59,7 @@ class CarState(CarStateBase):
     ret.cruiseState.standstill = cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"] == 6
     ret.cruiseState.speed = cp.vl["RADAR_HSC2_FrP02"]["ACCDrvrSelTrgtSpd_RadarHSC2"] * CV.KPH_TO_MS
     ret.accFaulted = cp_cam.vl["FVCM_HSC2_FrP02"]["TJAICASysFltStsHSC2"] != 0  # TODO: validate
-
-    # Sts(ACC狀態),ACC(加速度值),BRK(要求煞車),OBJ(是否有前車),DIST(前車距離)
-    #print(
-    #  f'STS={cp.vl["RADAR_HSC2_FrP00"]["ACCSysSts_RadarHSC2"]},'
-    #  f'ACC={ret.cruiseState.enabled},'
-    #)
-    
+ 
     # Gear
     if self.CP.carFingerprint == CAR.MG_ZS:
       ret.gearShifter = GEAR_MAP.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrShftLvrPos_h1HSC2"]), GearShifter.unknown)
@@ -99,23 +91,6 @@ class CarState(CarStateBase):
       cp.vl["RADAR_HSC2_FrP02"]["FCWrnngSts_RadarHSC2"] != 0 or
       cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"] != 0
     )
-
-    # stop & go 起步請求
-    # TSR 限速 ret.cruiseState.speedLimit
-    #limit_speed = cp_cam.vl.get("FVCM_HSC2_FrP02", {}).get("TrgtSpdReqCamrHSC2", 0)
-    #go = cp.vl.get("RADAR_HSC2_FrP02", {}).get("ACCGoNotfr_RadarHSC2", 0)
-    #print(f'[GO]={cp.vl["RADAR_HSC2_FrP02"]["ACCGoNotfr_RadarHSC2"]}')
-
-    # Update control button states for turn signals and ACC controls.
-    self.button_states["accel_cruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdIncSwA_h2HSC2"])
-    self.button_states["decel_cruise"]  = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSpdDecSwA_h2HSC2"])
-    self.button_states["cancel"]        = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsCanclSwA_h2HSC2"])
-    self.button_states["set_cruise"]    = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsSetSwA_h2HSC2"])
-    self.button_states["resume_cruise"] = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsRsmSwA_h2HSC2"])
-    self.button_states["on_cruise"]     = bool(cp.vl["GW_HSC2_FrP04"]["CCSwStsOnSwA_h2HSC2"])
-
-    # forward stock LKAS HUD
-#   self.lkas_hud = copy.copy(cp_cam.vl["FVCM_HSC2_FrP02"])
 
     return ret
 
