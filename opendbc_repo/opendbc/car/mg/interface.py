@@ -26,7 +26,7 @@ class CarInterface(CarInterfaceBase):
     ret.steerControlType = structs.CarParams.SteerControlType.torque
     ret.radarUnavailable = True
 
-    ret.alphaLongitudinalAvailable = True
+    ret.alphaLongitudinalAvailable = False
     if alpha_long:
       ret.openpilotLongitudinalControl = True
       ret.safetyConfigs[0].safetyParam |= MgSafetyFlags.LONG_CONTROL.value
