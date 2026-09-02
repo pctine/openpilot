@@ -26,6 +26,10 @@ FW_VERSIONS = {
       b'\x11\x03\t\x18\x01',
     ],
   },
+  CAR.MG_HS: {
+    # TODO: populate via tools/car_porting/auto_fingerprint.py once a route
+    # with FW query enabled is captured on the 2025 MG HS
+  },
   CAR.MG_ZS: {
     (Ecu.eps, 0x721, None): [
       b'\x11\x06c\x94\x01',
@@ -33,9 +37,5 @@ FW_VERSIONS = {
     (Ecu.fwdCamera, 0x733, None): [
       b'\x10\x89wQ\x01',
     ],
-  },
-  CAR.MG_HS: {
-    # TODO: populate via tools/car_porting/auto_fingerprint.py once a route
-    # with FW query enabled is captured on the 2025 MG HS
-  },
+  },  
 }
