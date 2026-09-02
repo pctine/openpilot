@@ -58,6 +58,10 @@ FW_QUERY_CONFIG = FwQueryConfig(
       bus=bus,
     ),
   ]],
+
+  extra_ecus=[
+    (Ecu.fwdRadar, 0x732, None),
+  ],
 )
 
 GEAR_MAP_EV = {
