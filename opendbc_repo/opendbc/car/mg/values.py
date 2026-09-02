@@ -39,6 +39,12 @@ class CAR(Platforms):
     CarSpecs(mass=1295., wheelbase=2.58, steerRatio=15.8),
   )
 
+  MG_HS = MgPlatformConfig(
+    [
+      MgCarDocs("MG HS PHEV"),
+    ],
+    CarSpecs(mass=1782., wheelbase=2.72, steerRatio=15.8),
+  )
 
 MG_VERSION_REQUEST = bytes([uds.SERVICE_TYPE.READ_DATA_BY_IDENTIFIER]) + \
   p16(0xf1a0)

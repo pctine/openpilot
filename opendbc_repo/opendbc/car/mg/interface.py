@@ -17,7 +17,7 @@ class CarInterface(CarInterfaceBase):
 
     if candidate == CAR.MG_ZS_EV:
       ret.safetyConfigs[0].safetyParam |= MgSafetyFlags.ALT_BRAKE.value
-    elif candidate == CAR.MG_ZS:
+    elif candidate in (CAR.MG_ZS, CAR.MG_HS):
       ret.safetyConfigs[0].safetyParam |= MgSafetyFlags.NON_EV.value
 
     ret.steerActuatorDelay = 0.3

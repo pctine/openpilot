@@ -34,4 +34,8 @@ FW_VERSIONS = {
       b'\x10\x89wQ\x01',
     ],
   },
+  CAR.MG_HS: {
+    # TODO: populate via tools/car_porting/auto_fingerprint.py once a route
+    # with FW query enabled is captured on the 2025 MG HS
+  },
 }
