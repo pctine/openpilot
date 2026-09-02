@@ -19,13 +19,13 @@ class CarState(CarStateBase):
     # Vehicle speed
     ret.vEgoRaw = cp.vl["SCS_HSC2_FrP19"]["VehSpdAvgHSC2"] * CV.KPH_TO_MS
     ret.vEgo, ret.aEgo = self.update_speed_kf(ret.vEgoRaw)
-    if self.CP.carFingerprint == CAR.MG_ZS:
+    if self.CP.carFingerprint in (CAR.MG_ZS, CAR.MG_HS):
       ret.standstill = ret.vEgoRaw < 0.01
     else:
       ret.standstill = cp.vl["SCS_HSC2_FrP24"]["VehSdslStsHSC2"] == 1
 
     # Gas pedal
-    if self.CP.carFingerprint == CAR.MG_ZS:
+    if self.CP.carFingerprint in (CAR.MG_ZS, CAR.MG_HS):
       ret.gasPressed = cp.vl["Tester_HSC2_ECM_FrP00"]["AccelActuPosHSC2"] > 0
     else:
       ret.gasPressed = cp.vl["GW_HSC2_HCU_FrP00"]["EPTAccelActuPosHSC2"] > 0
@@ -34,7 +34,7 @@ class CarState(CarStateBase):
     ret.brake = 0
     if self.CP.carFingerprint == CAR.MG_ZS_EV:
       ret.brakePressed = cp.vl["GW_HSC2_HCU_FrP00"]["EPTBrkPdlDscrtInptStsHSC2"] == 1
-    elif self.CP.carFingerprint == CAR.MG_ZS:
+    elif self.CP.carFingerprint in (CAR.MG_ZS, CAR.MG_HS):
       ret.brakePressed = cp.vl["SCS_HSC2_FrP09"]["BrkPdlDrvrAppdPrsHSC2"] > 100
     else:
       ret.brakePressed = cp.vl["EHBS_HSC2_FrP00"]["BrkPdlAppdHSC2"] == 1
@@ -58,7 +58,7 @@ class CarState(CarStateBase):
     ret.accFaulted = cp_cam.vl["FVCM_HSC2_FrP02"]["TJAICASysFltStsHSC2"] != 0  # TODO: validate
 
     # Gear
-    if self.CP.carFingerprint == CAR.MG_ZS:
+    if self.CP.carFingerprint in (CAR.MG_ZS, CAR.MG_HS):
       ret.gearShifter = GEAR_MAP.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrShftLvrPos_h1HSC2"]), GearShifter.unknown)
     else:
       ret.gearShifter = GEAR_MAP_EV.get(int(cp.vl["GW_HSC2_ECM_FrP04"]["TrEstdGearHSC2"]), GearShifter.unknown)
