@@ -22,4 +22,4 @@ fi
 export STAGING_ROOT="/data/safe_staging"
 
 # testing: force MG_ZS fingerprint (2025 ICE) until FW versions are captured
-#export FINGERPRINT="MG_HS"
+export FINGERPRINT="MG_HS"
