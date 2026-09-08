@@ -37,4 +37,15 @@ FW_VERSIONS = {
       b'\x11\x52\x75\x50\x01',
     ],
   },  
+  CAR.MG_HS: {
+  (Ecu.eps, 0x721, None): [
+    b'\x10\x44\x86\x30\x01',
+  ],
+  (Ecu.fwdCamera, 0x733, None): [
+    b'\x10\x63\x54\x97\x01',
+  ],
+  (Ecu.fwdRadar, 0x734, None): [
+    b'\x10\x63\x54\x99\x01',
+  ],
+},
 }
