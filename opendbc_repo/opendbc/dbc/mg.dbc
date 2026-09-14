@@ -188,6 +188,15 @@ BO_ 582 RADAR_HSC2_FrP02: 8 FDR
  SG_ FCWDspCmd_RadarHSC2 : 53|2@0+ (1,0) [0|3] "" GW
  SG_ AEBDspCmd_RadarHSC2 : 55|2@0+ (1,0) [0|3] "" GW
 
+BO_ 901 RADAR_HSC2_FrP07: 8 FDR
+ SG_ ACCDetObjExistPrbltyHSC2 : 15|6@0+ (0.015625,0) [0|0.984375] ""  GW
+ SG_ ACCDetObjIdHSC2 : 9|6@0+ (1,0) [0|63] ""  GW
+ SG_ ACCDetObjLatRltvDistHSC2 : 54|15@0+ (0.0078,-128) [-128|127.583] ""  GW
+ SG_ ACCDetObjLongtRltvDistHSC2 : 35|12@0+ (0.0625,0) [0|255.938] ""  GW
+ SG_ ACCDetObjLongtRltvSpdHSC2 : 19|12@0+ (0.0625,-128) [-128|127.938] ""  GW
+ SG_ ACCDetObjSyncCtrHSC2 : 39|4@0+ (1,0) [0|15] ""  GW
+ SG_ ACCDetObsExistPrbltyHSC2 : 4|5@0+ (0.03125,0) [0|0.96875] ""  GW
+
 BO_ 588 SCS_HSC2_FrP22: 8 SCSABS
  SG_ BrkDiscTemStsHSC2 : 6|1@0+ (1,0) [0|1] ""  FDR
  SG_ BrkPdlDrvrAppdPrsAlvRC_RadarHSC2 : 13|2@0+ (1,0) [0|3] ""  FDR
