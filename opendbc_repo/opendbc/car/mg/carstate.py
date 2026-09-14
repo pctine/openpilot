@@ -1,5 +1,3 @@
-import copy
-
 from opendbc.can.parser import CANParser
 from opendbc.car import Bus, structs
 from opendbc.car.interfaces import CarStateBase
@@ -11,7 +9,6 @@ GearShifter = structs.CarState.GearShifter
 class CarState(CarStateBase):
   def __init__(self, CP):
     super().__init__(CP)
-    self.lkas_hud = {}
 
   def update(self, can_parsers) -> structs.CarState:
     cp = can_parsers[Bus.pt]
@@ -84,11 +81,9 @@ class CarState(CarStateBase):
     ret.rightBlindspot = cp.vl["RDA_HSC1_P02"]["RBSDAndLCAWrnng_HS"] > 0
 
     # AEB
-    # ret.stockAeb = False
-    ret.stockAeb = (
-      cp.vl["RADAR_HSC2_FrP02"]["FCWrnngSts_RadarHSC2"] != 0 or
-      cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"] != 0
-    )
+    #ret.stockAeb = False
+    ret.stockAeb = cp.vl["RADAR_HSC2_FrP02"]["AEBMsgReqHSC2"] == 2
+    ret.stockFcw = cp.vl["RADAR_HSC2_FrP02"]["FCWrnngSts_RadarHSC2"] == 1
 
     return ret
 
