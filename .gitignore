@@ -17,7 +17,6 @@ bin/
 
 # created at launch for comma hardware PYTHONPATH (PC uses editable installs via pyproject.toml)
 /msgq
-/opendbc
 /rednose
 /teleoprtc
 /tinygrad
